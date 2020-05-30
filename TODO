@@ -1,0 +1,41 @@
+license: cite https://github.com/NickLeoMartin/emergent_comm_rl (ok)
+load model check (ok)
+shape commment (ok)
+dataset random split problem (ok)
+direct, crowd (ok)
+git submodule clone problem (ok)
+lint (ok)
+infer/sample (ok)
+shorttermgame in base, remember arguments(direct problem)  (ok)
+load too slow (ok)
+nbatch problem, short-term round problem (ok)
+training using sample instead of infer;;; direct;;; retest (ok)
+lstm implement? This may not be necessary for idea1, but necessary for idea2. (ok)
+alphabet size scalable problem (ok)
+Mujoco and cnn.(ok)
+Only efficient digits for loss computation??(ok)
+remove "torm conv" model(ok)
+entropy set to 0? no, for rnnconv, use 0.01 and 0.001(ok)
+order of w,h,c (ok)
+reward new in short term game (ok)
+rnn retrain and explode.(ok)
+
+reason of lambda
+cnn retrain
+training speed cpu
+looking for speedup computation resources
+mujoco data: strictly average distributed, floor color, viewpoint, render every with new pos and ori, noise
+unstable test result???
+For each short-term game method, check how will the strategy distribution be like after the short-term game? What does the messages look like?
+Why during the test, infer is better than sample? Maybe because the training is not convergence and the ideal strategies should converge to pure.
+Control data distribution, unis.
+TOPOGRAPHIC SIMILARITY.
+prob twice problem
+network structure (encoding, decoding) not exactly same as paper
+If solving a short-term game for each instance is time consuming, could we remember strategies of solved games by adding memory cells? (Related paper???)
+How about introducing short-term games into the training process?
+commit code(MIT license and code package)
+accerlation and distributed ml code
+multiple candidates zeroshot?
+new color zeroshot?
+message length payoff
