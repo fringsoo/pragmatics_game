@@ -347,7 +347,6 @@ class PaperListenerNetwork_rnn_conv(PaperListenerNetwork_rnn):
 			#self.listener_model.compile(loss="categorical_crossentropy", optimizer=RMSprop(lr=self.config['listener_lr']))
 
 		else:
-			import pdb; pdb.set_trace()
 			self.load()
 			#check!!!
 			self.conv_model = [l for l in self.listener_model.layers if l.name=='conv_model_l'][0]

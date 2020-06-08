@@ -17,16 +17,15 @@ agent = Agents(config_dict)
 #agent.pretrain_fit_conv()
 #agent.fit()
 
-
 #agent.set_virtual()
-#agent.set_virtual_real()
+
+agent.set_virtual_real()
 #agent.train_virtual_listener()
 #agent.train_virtual_speaker()
 #agent.check_virtual_listener()
 #agent.check_virtual_speaker()
 
 agent.predict()
-#agent.predict_virtual()
 
 
 
