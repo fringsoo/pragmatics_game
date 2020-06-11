@@ -20,7 +20,7 @@ agent = Agents(config_dict)
 
 #agent.pretrain_fit_conv()
 
-#agent.fit()
+agent.fit()
 
 #agent.set_virtual_origin()
 agent.set_virtual_real()

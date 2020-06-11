@@ -34,7 +34,7 @@ agent.pretrain_fit_conv()
 ### 2. Long-term training
 To use pretrained emerged language system, config "modelpath" in config.py as:
 ```shell
-os.path.join("models", "model_pixel_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin_highacc_wellsplit_feweffectivedigit")
+os.path.join("models", "model_pixel_rnnconv_alpha17_maxlength5")
 ```
 or train the system by yourself by changing it to a new path and  setting in run_experiments.py:
 ```shell

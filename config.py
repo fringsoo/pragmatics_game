@@ -88,7 +88,7 @@ agent_config_dict_rnnbasic = {
 
 agent_config_dict_rnnconv = {	
 	###################################fixed for a model###################################
-	"modelpath": os.path.join("models", "model_pixel_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin_highacc_wellsplit_feweffectivedigit"),
+	"modelpath": os.path.join("models", "model_pixel_rnnconv_alpha17_maxlength5"),
 	#"modelpath": os.path.join("models", "new_model_pixel_rnnconv_alpha17_maxlength5"),
 
 	
@@ -133,7 +133,8 @@ agent_config_dict_rnnconv = {
 	
 	"max_short_game_round": 1000,
 	'sample_round_explicit': 1,
-	"predict_nepoch": 1,
+	
+	"predict_nepoch": 2,
 
 	"challenge": True,
 	"challenge_same_set": [[0],[1],[2],[3],[4,5],[6,7]],

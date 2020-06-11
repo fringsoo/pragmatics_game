@@ -400,10 +400,15 @@ def utils_prag_iter(speaker_model, listener_model, example, stopcondition, oneho
 	for nm in range(len(messages_all)):
 		messages_index[messages_all[nm]] = nm
 	
+	
+
 	ps_m_t = [[m4cs_withprob[t][messages_all[m]] for m in range(len(messages_all))] for t in range(n_classes)]
 	ps_m_t = [p4t / (sum(p4t) + 0.0) for p4t in ps_m_t]
-
+	
+	
 	pl_t_m = [listener_model.infer_from_listener_policy(np.array(messages_all[m]), candidates)[1] for m in range(len(messages_all))]
+	
+	#t15 = time.time()
 	if onehotlistener_0:
 		pl_t_m = np.eye(n_classes)[np.argmax(pl_t_m, 1)]
 
@@ -416,6 +421,8 @@ def utils_prag_iter(speaker_model, listener_model, example, stopcondition, oneho
 	ps_m_t = np.array(ps_m_t)
 	
 	pl_t_m_bak = copy.deepcopy(pl_t_m)
+
+	#t2 =time.time()
 
 	iterround = 0
 	while True:
@@ -470,9 +477,13 @@ def utils_prag_iter(speaker_model, listener_model, example, stopcondition, oneho
 			l_ms4t_info[l_sm] = utils_get_choice_scores(listener_model, candidates, np.array(l_sm),  np.argmax(target_candidate_idx))[1]
 			#l_ms4t_info[l_sm] = listener_model.get_internal_model_torm(np.array(l_sm), candidates)[3][0][np.argmax(target_candidate_idx)]
 
-	#t2 = time.time()
+	#tf = time.time()
 	#print('0-1',t1-t0)
-	#print('1-2',t2-t1)
+	#print('1-15',t15-t1)
+	#print('15-2',t2-t15)
+	#print('2-f',tf-t2)
+	#import pdb; pdb.set_trace()
+
 	return reward, candidates[np.argmax(target_candidate_idx)], np.array(speaker_message), chosen_target_idx, message_prob, cp, s_m4t_info, l_ms4t_info
 	#return reward, candidates[np.argmax(target_candidate_idx)], np.array(speaker_message), chosen_target_idx, message_prob, cs, None, None
 
@@ -510,7 +521,7 @@ def utils_table(speaker_model, listener_model, example, special):
 	target_input, candidates, target_candidate_idx, sampled_target_idx, candidate_idx_set = example
 	n_classes = len(candidates)
 	
-	#import time; t0 = time.time()
+	import time; t0 = time.time()
 
 	m4cs_withprob = [] #[{m1:p, m2:p,...}, {m1:p, m3:p,...}]
 	for candidate in candidates:
@@ -518,7 +529,7 @@ def utils_table(speaker_model, listener_model, example, special):
 		#assert len(samples) >=2 
 		m4cs_withprob.append(samples)
 	
-	#t1=time.time()
+	t1=time.time()
 	
 	m4cs_onlymessage = [set(m4c.keys()) for m4c in m4cs_withprob] #[{m1, m2, ...}, {m1, m3, ...}]
 	messages_all = list(set.union(*m4cs_onlymessage)) #[m1, m2, m3]
@@ -531,7 +542,10 @@ def utils_table(speaker_model, listener_model, example, special):
 			payoff *= m4cs_withprob[nc][ss[nc]]
 		speaker_strategies.append((ss, payoff))
 
+	
+
 	c4ms = [] #[[0,1], [0], [1], ...]
+	cp4ms = []
 
 	messages_index = {} #{m1:1, ...}
 	for nm in range(len(messages_all)):
@@ -543,19 +557,26 @@ def utils_table(speaker_model, listener_model, example, special):
 			if message in m4cs_onlymessage[c]:
 				cs.append(c)
 		c4ms.append(cs)
+		
+		cps = listener_model.infer_from_listener_policy(np.array(message), candidates)[1]
+		cp4ms.append(cps)
+		
+	
+	t15 = time.time()
 	
 	listener_strategies = []
 	for ls in product(*c4ms):
-		#ls: (0, 0, 1, ...)
+		#ls: (0, 0, 1, ...) length=len(messages_all)
 		#payoff = 0
 		payoff = 1
-		assert len(ls) == len(messages_all)
 		for nm in range(len(messages_all)):
-			#payoff += listener_model.get_internal_model_torm(np.array(messages_all[nm]), candidates)[3][0][ls[nm]]
-			payoff *= listener_model.infer_from_listener_policy(np.array(messages_all[nm]), candidates)[1][ls[nm]]
+			#payoff *= listener_model.infer_from_listener_policy(np.array(messages_all[nm]), candidates)[1][ls[nm]]
+			payoff *= cp4ms[nm][ls[nm]]
 		listener_strategies.append((ls, payoff))
 
-	table = [[[-1, -10000, True] for col in range(len(speaker_strategies))] for row in range(len(listener_strategies))]
+	t2 = time.time()
+
+	table = [[[-1, -1, True] for col in range(len(speaker_strategies))] for row in range(len(listener_strategies))]
 	for row in range(len(listener_strategies)):
 		for col in range(len(speaker_strategies)):
 			match = True
@@ -603,6 +624,8 @@ def utils_table(speaker_model, listener_model, example, special):
 	#data.insert(0,'',listener_strategies)
 	#data.to_csv('torm.csv', header=['']+speaker_strategies, index=False)
 	
+	t3 = time.time()
+
 	equilibria = []
 	for row in range(len(listener_strategies)):
 		for col in range(len(speaker_strategies)):
@@ -709,9 +732,13 @@ def utils_table(speaker_model, listener_model, example, special):
 		s_m4t_info = []
 		l_ms4t_info = {}
 
-	#t2 = time.time()
-	#print('0-1',t1-t0)
-	#print('1-2',t2-t1)
+	tf = time.time()
+	# print('0-1',t1-t0)
+	# print('1-15',t15-t1)
+	# print('15-2',t2-t15)
+	# print('2-3',t3-t2)
+	# print('3-f',tf-t3)
+	# import pdb; pdb.set_trace()
 	return reward, candidates[np.argmax(target_candidate_idx)], np.array(speaker_message), chosen_target_idx, message_prob, cp, s_m4t_info, l_ms4t_info
 	#return reward, candidates[np.argmax(target_candidate_idx)], np.array(speaker_message), chosen_target_idx, message_prob, cs, None, None
 

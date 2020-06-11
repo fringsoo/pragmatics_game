@@ -19,23 +19,28 @@ entropy set to 0? no, for rnnconv, use 0.01 and 0.001(ok)
 order of w,h,c (ok)
 reward new in short term game (ok)
 rnn retrain and explode.(ok)
+reason of lambda (ok)
+cnn retrain (ok)
+training speed cpu (ok)
+looking for speedup computation resources (ok)
+For each short-term game method, check how will the strategy distribution be like after the short-term game? What does the messages look like? (ok)
+network structure (encoding, decoding) not exactly same as paper (ok)
+commit code(MIT license and code package) (ok)
+accerlation and distributed ml code (ok)
+message length payoff (ok)
+mujoco data: strictly average distributed, floor color, viewpoint, render every with new pos and ori, noise (ok)
 
-reason of lambda
-cnn retrain
-training speed cpu
-looking for speedup computation resources
-mujoco data: strictly average distributed, floor color, viewpoint, render every with new pos and ori, noise
-unstable test result???
-For each short-term game method, check how will the strategy distribution be like after the short-term game? What does the messages look like?
-Why during the test, infer is better than sample? Maybe because the training is not convergence and the ideal strategies should converge to pure.
-Control data distribution, unis.
-TOPOGRAPHIC SIMILARITY.
-prob twice problem
-network structure (encoding, decoding) not exactly same as paper
-If solving a short-term game for each instance is time consuming, could we remember strategies of solved games by adding memory cells? (Related paper???)
-How about introducing short-term games into the training process?
-commit code(MIT license and code package)
-accerlation and distributed ml code
+
 multiple candidates zeroshot?
 new color zeroshot?
-message length payoff
+Control data distribution, unis.
+TOPOGRAPHIC SIMILARITY
+prob twice problem 
+If solving a short-term game for each instance is time consuming, could we remember strategies of solved games by adding memory cells? (Related paper???)
+How about introducing short-term games into the training process?
+
+newt: dot or euclidean
+lr & entropy for initial setting, rebuild, virtual
+first  use entropy = 0.01 for speaker and 0.001 for listener to train to 90%, then set to 0
+lr=0.001 for euclidean and 0.0001 for dot
+unstable test result??? Why during the test, infer is better than sample? Maybe because the training is not convergence and the ideal strategies should converge to pure.
