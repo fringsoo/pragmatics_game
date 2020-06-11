@@ -18,6 +18,7 @@ from itertools import product
 import pprint
 import scipy.spatial.distance
 import pandas as pd
+import datetime
 
 from wrapper_visa import VisaDatasetWrapper
 from wrapper_pybullet import BulletWrapper
@@ -58,6 +59,7 @@ def weighted_random_by_dct(dct):
 			return k
 	assert False, 'unreachable'
 	
+#######################################################################################
 def utils_imrmbg(img):
 	newimg = []
 	for layer in range(3):
@@ -86,6 +88,18 @@ def utils_digit2alphabet(speaker_message):
 		nm += alphabet[m]
 	return nm
 
+def utils_judge_sameset(test_example, same_set):
+	for s in range(6):
+		if test_example[4][0] in same_set[s]:
+			sn0 = s
+		if test_example[4][1] in same_set[s]:
+			sn1 = s
+	if sn0!=sn1:
+		return False
+	else:
+		return True
+
+#######################################################################################
 def utils_calculate_reward(chosen_target_idx, target_candidate_idx):
 	if target_candidate_idx[chosen_target_idx]==1.:
 		return 1
@@ -109,7 +123,7 @@ def utils_sample_from_networks_on_batch(speaker_model, listener_model, target_in
 	All inputs: Just one instance. No bs dimensize.
 	"""
 	speaker_message, speaker_probs = speaker_model.sample_from_speaker_policy(target_input)
-	chosen_target_idx, listener_probs = listener_model.sample_from_listener_policy(speaker_message, candidates)
+	chosen_target_idx, listener_probs, us = listener_model.sample_from_listener_policy(speaker_message, candidates)
 	reward = utils_calculate_reward(chosen_target_idx, target_candidate_idx)
 	speaker_model.remember_speaker_training_details(target_input, speaker_message, speaker_probs, reward)
 	listener_model.remember_listener_training_details(speaker_message, chosen_target_idx, listener_probs, target_input, candidates, reward)
@@ -127,7 +141,7 @@ def utils_fit(speaker_model, listener_model, batch, trainspeaker=True, trainlist
 		listener_model.train_listener_policy_on_batch()
 	return training_reward
 
-
+#######################################################################################
 def utils_simulate(speaker_model, listener_model, s4l, l4s, batch):
 	for b in batch:
 		target_input, candidates, target_candidate_idx, sampled_target_idx, candidate_idx_set = b
@@ -136,8 +150,8 @@ def utils_simulate(speaker_model, listener_model, s4l, l4s, batch):
 		s, sp = s4l.sample_from_speaker_policy(target_input)
 		s4l.remember_speaker_training_details(target_input, speaker_message, sp, 1)
 		
-		chosen_target_idx, listener_probs = listener_model.sample_from_listener_policy(speaker_message, candidates)
-		c, lp = l4s.sample_from_listener_policy(speaker_message, candidates)
+		chosen_target_idx, listener_probs, us = listener_model.sample_from_listener_policy(speaker_message, candidates)
+		c, lp, usv = l4s.sample_from_listener_policy(speaker_message, candidates)
 		l4s.remember_listener_training_details(speaker_message, chosen_target_idx, lp, target_input, candidates, 1)
 	
 	s4l.train_speaker_policy_on_batch()
@@ -158,7 +172,7 @@ def utils_simulate_s_learn(listener_model, newspeaker, batch):
 		target_input, candidates, target_candidate_idx, sampled_target_idx, candidate_idx_set = b
 
 		s, sp = newspeaker.sample_from_speaker_policy(target_input)
-		chosen_target_idx, listener_probs = listener_model.infer_from_listener_policy(s, candidates)
+		chosen_target_idx, listener_probs, us = listener_model.infer_from_listener_policy(s, candidates)
 		reward = utils_calculate_reward(chosen_target_idx, target_candidate_idx)
 		newspeaker.remember_speaker_training_details(target_input, s, sp, reward)
 		
@@ -170,8 +184,8 @@ def utils_simulate_l_simu(speaker_model, listener_model, newlistener, batch):
 
 		speaker_message, speaker_probs = speaker_model.infer_from_speaker_policy(target_input)
 		
-		chosen_target_idx, listener_probs = listener_model.sample_from_listener_policy(speaker_message, candidates)
-		c, lp = newlistener.sample_from_listener_policy(speaker_message, candidates)
+		chosen_target_idx, listener_probs, us = listener_model.sample_from_listener_policy(speaker_message, candidates)
+		c, lp, usv = newlistener.sample_from_listener_policy(speaker_message, candidates)
 		newlistener.remember_listener_training_details(speaker_message, chosen_target_idx, lp, target_input, candidates, 1)
 	
 	newlistener.train_listener_policy_on_batch()
@@ -182,7 +196,7 @@ def utils_simulate_l_learn(speaker_model, newlistener, batch):
 
 		speaker_message, speaker_probs = speaker_model.infer_from_speaker_policy(target_input)
 
-		c, lp = newlistener.sample_from_listener_policy(speaker_message, candidates)
+		c, lp, usv = newlistener.sample_from_listener_policy(speaker_message, candidates)
 		reward = utils_calculate_reward(c, target_candidate_idx)
 
 		newlistener.remember_listener_training_details(speaker_message, c, lp, target_input, candidates, reward)
@@ -192,8 +206,8 @@ def utils_simulate_l_learn(speaker_model, newlistener, batch):
 def utils_virtual_check_speaker(speaker_model, newspeaker, example):
 	target_input, candidates, target_candidate_idx, sampled_target_idx, candidate_idx_set = example
 
-	samples_real = utils_sample_message_for_a_candidate(speaker_model, target_input, len(candidates))
-	samples_new = utils_sample_message_for_a_candidate(newspeaker, target_input, len(candidates))
+	samples_real = utils_sample_message_for_a_candidate(speaker_model, target_input)
+	samples_new = utils_sample_message_for_a_candidate(newspeaker, target_input)
 
 	for m in samples_new.keys():
 		if m not in samples_real:
@@ -220,7 +234,8 @@ def utils_virtual_check_listener(speaker_model, listener_model, newlistener, exa
 	
 	return listener_similarity
 	
-def utils_get_message_prob(speaker_message, speaker_probs, maskdigit=[3,4]):
+#######################################################################################
+def utils_get_message_prob(speaker_message, speaker_probs, maskdigit):
 	message_prob = 1
 	#for ss in range(3):
 	for ss in range(len(speaker_message)):
@@ -229,14 +244,15 @@ def utils_get_message_prob(speaker_message, speaker_probs, maskdigit=[3,4]):
 	return message_prob
 
 def utils_get_choice_scores(listener_model, candidates, speaker_message, assign_choice=None):
-	chosen_target_idx, listener_probs = listener_model.infer_from_listener_policy(speaker_message, candidates)
-	
+	chosen_target_idx, listener_probs, us = listener_model.infer_from_listener_policy(speaker_message, candidates)
 	if assign_choice:
-		#choice_similarity = listener_model.get_internal_model_torm(speaker_message, candidates)[3][0][assign_choice]
+		choice_similarity = us[assign_choice]
+		#listener_model.get_internal_model_torm(speaker_message, candidates)[3][0][assign_choice]
 		choice_prob = listener_probs[assign_choice]
 		choice_similarity = choice_prob
 		return choice_similarity, choice_prob, None
 	else:
+		choice_similarity = us[chosen_target_idx]
 		#choice_similarity = listener_model.get_internal_model_torm(speaker_message, candidates)[3][0][chosen_target_idx]
 		choice_prob = listener_probs[chosen_target_idx]
 		choice_similarity = choice_prob
@@ -246,59 +262,57 @@ def utils_mask_message(message, maskdigit, mask):
 	message[maskdigit] = mask
 	return message
 
-def utils_sample_message_for_a_candidate(speaker_model, candidate, candidate_num=2, num_samples=100, prob_threshold=0.00):
+def utils_sample_message_for_a_candidate(speaker_model, candidate, num_samples=100, prob_threshold=0.00):
 	'''
 	Sample policies from here
 	'''
-	maskdigit = [3,4]
-	mask = 2
-
 	action_prob = speaker_model.network_output(candidate)
 	samples = {}
 	#use history samples!?
 	for _r in range(num_samples):
 		s, sp = speaker_model.sample_message_from_prob(action_prob)
-		s = utils_mask_message(s, maskdigit, mask)
+		s = utils_mask_message(s, speaker_model.config['maskdigit'], speaker_model.config['mask'])
 		if tuple(s) not in samples:
-			prob = utils_get_message_prob(s, sp, maskdigit)
+			prob = utils_get_message_prob(s, sp, speaker_model.config['maskdigit'])
 			if prob >= prob_threshold:
 				samples[tuple(s)] = prob
 	#
 	
 	#samples_to_return = dict(sorted(samples.items(), key=lambda x:x[1], reverse=True)[:3])
+	#return samples_to_return
 
 	sum = 0
 	samples_to_return = {}
 	for it in sorted(samples.items(), key=lambda x:x[1], reverse=True):
 		samples_to_return[it[0]] = it[1]
 		sum += it[1]
-		if sum > 0.75:
+		if sum > speaker_model.config['threshold']:
 			break
 
 	#import pdb; pdb.set_trace()
 	return samples_to_return
 
-
+#######################################################################################
 def utils_test(speaker_model, listener_model, example):
 	"""
 	All inputs: Just one instance. No bs dimensize.
 	"""
 	target_input, candidates, target_candidate_idx, sampled_target_idx, candidate_idx_set = example
 	speaker_message, _speaker_probs = speaker_model.infer_from_speaker_policy(target_input)
-	chosen_target_idx, _listener_probs = listener_model.infer_from_listener_policy(speaker_message, candidates)
+	chosen_target_idx, _listener_probs, us = listener_model.infer_from_listener_policy(speaker_message, candidates)
 	reward = utils_calculate_reward(chosen_target_idx,target_candidate_idx)
 		
-	message_prob = utils_get_message_prob(speaker_message, _speaker_probs)
+	message_prob = utils_get_message_prob(speaker_message, _speaker_probs, speaker_model.config['maskdigit'])
 	cs, cp, _ = utils_get_choice_scores(listener_model, candidates, speaker_message, chosen_target_idx)
 	
-	return reward, target_input, speaker_message, chosen_target_idx, message_prob, cs, [], {}
+	return reward, target_input, speaker_message, chosen_target_idx, message_prob, cp, [], {}
 
 def utils_prag_sample(speaker_model, listener_model, example, lambda_setting=0.5):
 	"""
 	All inputs: Just one instance. No bs dimensize.
 	"""
 	target_input, candidates, target_candidate_idx, sampled_target_idx, candidate_idx_set = example
-	samples = utils_sample_message_for_a_candidate(speaker_model, target_input, len(candidates))
+	samples = utils_sample_message_for_a_candidate(speaker_model, target_input)
 	samples_score = {}
 	for sk in samples.keys():
 		cs, cp, _ = utils_get_choice_scores(listener_model, candidates, np.array(sk), np.argmax(target_candidate_idx))
@@ -306,10 +320,10 @@ def utils_prag_sample(speaker_model, listener_model, example, lambda_setting=0.5
 		samples_score[sk] = score
 	speaker_message = max(samples_score, key=samples_score.get)
 	message_prob = samples[speaker_message]
-	chosen_target_idx, listener_probs = listener_model.sample_from_listener_policy(np.array(speaker_message), candidates)
+	chosen_target_idx, listener_probs, us = listener_model.sample_from_listener_policy(np.array(speaker_message), candidates)
 	cs, cp, _ = utils_get_choice_scores(listener_model, candidates, np.array(speaker_message), chosen_target_idx)
 	reward = utils_calculate_reward(chosen_target_idx, target_candidate_idx)
-	return reward, candidates[np.argmax(target_candidate_idx)], np.array(speaker_message), chosen_target_idx, message_prob, cs, [], {}
+	return reward, candidates[np.argmax(target_candidate_idx)], np.array(speaker_message), chosen_target_idx, message_prob, cp, [], {}
 
 def utils_prag_sample_virtual(speaker_model, listener_model, virtual_l4s, example, lambda_setting=0.5):
 	"""
@@ -321,21 +335,21 @@ def utils_prag_sample_virtual(speaker_model, listener_model, virtual_l4s, exampl
 	speaker_message = result[2]
 	message_prob = result[4]
 	
-	chosen_target_idx, listener_probs = listener_model.sample_from_listener_policy(np.array(speaker_message), candidates)
+	chosen_target_idx, listener_probs, us = listener_model.sample_from_listener_policy(np.array(speaker_message), candidates)
 	cs, cp, _ = utils_get_choice_scores(listener_model, candidates, np.array(speaker_message), chosen_target_idx)
 	
 	reward = utils_calculate_reward(chosen_target_idx, target_candidate_idx)
-	return reward, candidates[np.argmax(target_candidate_idx)], np.array(speaker_message), chosen_target_idx, message_prob, cs, None, None
+	return reward, candidates[np.argmax(target_candidate_idx)], np.array(speaker_message), chosen_target_idx, message_prob, cp, None, None
 
 def utils_prag_argmax(speaker_model, listener_model, example):
 	"""
 	All inputs: Just one instance. No bs dimensize.
 	"""
 	target_input, candidates, target_candidate_idx, sampled_target_idx, candidate_idx_set = example
-	samples = utils_sample_message_for_a_candidate(speaker_model, target_input, len(candidates))
+	samples = utils_sample_message_for_a_candidate(speaker_model, target_input)
 	samples_score = {}
 	for sk in samples.keys():
-		chosen_target_idx, listener_probs = listener_model.infer_from_listener_policy(np.array(sk), candidates)
+		chosen_target_idx, listener_probs, us = listener_model.infer_from_listener_policy(np.array(sk), candidates)
 		if chosen_target_idx != np.argmax(target_candidate_idx):
 			score = 0
 		else:
@@ -345,7 +359,7 @@ def utils_prag_argmax(speaker_model, listener_model, example):
 	message_prob = samples[speaker_message]
 	cs, cp, chosen_target_idx = utils_get_choice_scores(listener_model, candidates, np.array(speaker_message))
 	reward = utils_calculate_reward(chosen_target_idx, target_candidate_idx)
-	return reward, candidates[np.argmax(target_candidate_idx)], np.array(speaker_message), chosen_target_idx, message_prob, cs, [], {}
+	return reward, candidates[np.argmax(target_candidate_idx)], np.array(speaker_message), chosen_target_idx, message_prob, cp, [], {}
 
 def utils_prag_argmax_virtual(speaker_model, listener_model, virtual_l4s, example):
 	"""
@@ -359,19 +373,21 @@ def utils_prag_argmax_virtual(speaker_model, listener_model, virtual_l4s, exampl
 	
 	cs, cp, chosen_target_idx = utils_get_choice_scores(listener_model, candidates, np.array(speaker_message))
 	reward = utils_calculate_reward(chosen_target_idx, target_candidate_idx)
-	return reward, candidates[np.argmax(target_candidate_idx)], np.array(speaker_message), chosen_target_idx, message_prob, cs, None, None
-
+	return reward, candidates[np.argmax(target_candidate_idx)], np.array(speaker_message), chosen_target_idx, message_prob, cp, None, None
 
 def utils_prag_iter(speaker_model, listener_model, example, stopcondition, onehotlistener_0, onehotspeaker, onehotlistener, lambda_setting=0.5):
+	#import time; t0=time.time()
 	target_input, candidates, target_candidate_idx, sampled_target_idx, candidate_idx_set = example
 	n_classes = len(candidates)
 	
 	m4cs_withprob = [] #[{m1:p, m2:p,...}, {m1:p, m3:p,...}]
 	for candidate in candidates:
-		samples = utils_sample_message_for_a_candidate(speaker_model, candidate, len(candidates))
+		samples = utils_sample_message_for_a_candidate(speaker_model, candidate)
 		#assert len(samples) >=2 
 		m4cs_withprob.append(samples)
 	
+	#t1=time.time()
+
 	m4cs_onlymessage = [set(m4c.keys()) for m4c in m4cs_withprob] #[{m1, m2, ...}, {m1, m3, ...}]
 	messages_all = list(set.union(*m4cs_onlymessage)) #[m1, m2, m3]
 
@@ -451,11 +467,13 @@ def utils_prag_iter(speaker_model, listener_model, example, stopcondition, oneho
 	for m in range(len(messages_all)):
 		if np.argmax(pl_t_m[m]) == np.argmax(target_candidate_idx):
 			l_sm = messages_all[m]
-			l_ms4t_info[l_sm] = utils_get_choice_scores(listener_model, candidates, np.array(l_sm),  np.argmax(target_candidate_idx))[0]
+			l_ms4t_info[l_sm] = utils_get_choice_scores(listener_model, candidates, np.array(l_sm),  np.argmax(target_candidate_idx))[1]
 			#l_ms4t_info[l_sm] = listener_model.get_internal_model_torm(np.array(l_sm), candidates)[3][0][np.argmax(target_candidate_idx)]
 
-
-	return reward, candidates[np.argmax(target_candidate_idx)], np.array(speaker_message), chosen_target_idx, message_prob, cs, s_m4t_info, l_ms4t_info
+	#t2 = time.time()
+	#print('0-1',t1-t0)
+	#print('1-2',t2-t1)
+	return reward, candidates[np.argmax(target_candidate_idx)], np.array(speaker_message), chosen_target_idx, message_prob, cp, s_m4t_info, l_ms4t_info
 	#return reward, candidates[np.argmax(target_candidate_idx)], np.array(speaker_message), chosen_target_idx, message_prob, cs, None, None
 
 	'''
@@ -479,25 +497,28 @@ def utils_prag_iter_virtual(speaker_model, listener_model, virtual_s4l, virtual_
 		speaker_message = s_m4t_info[0]
 		chosen_target_idx = np.argmax(target_candidate_idx)
 		message_prob = s_m4t_info[1]
-		cs = l_ms4t_info[speaker_message]
+		cp = l_ms4t_info[speaker_message]
 	else:
 		reward = 0
 		speaker_message = s_m4t_info[0]
 		chosen_target_idx = -1
 		message_prob = s_m4t_info[1]
-		cs = -10000
-	return reward, candidates[np.argmax(target_candidate_idx)], np.array(speaker_message), chosen_target_idx, message_prob, cs, None, None
-
+		cp = 0
+	return reward, candidates[np.argmax(target_candidate_idx)], np.array(speaker_message), chosen_target_idx, message_prob, cp, None, None
 
 def utils_table(speaker_model, listener_model, example, special):
 	target_input, candidates, target_candidate_idx, sampled_target_idx, candidate_idx_set = example
 	n_classes = len(candidates)
 	
+	#import time; t0 = time.time()
+
 	m4cs_withprob = [] #[{m1:p, m2:p,...}, {m1:p, m3:p,...}]
 	for candidate in candidates:
-		samples = utils_sample_message_for_a_candidate(speaker_model, candidate, len(candidates))
+		samples = utils_sample_message_for_a_candidate(speaker_model, candidate)
 		#assert len(samples) >=2 
 		m4cs_withprob.append(samples)
+	
+	#t1=time.time()
 	
 	m4cs_onlymessage = [set(m4c.keys()) for m4c in m4cs_withprob] #[{m1, m2, ...}, {m1, m3, ...}]
 	messages_all = list(set.union(*m4cs_onlymessage)) #[m1, m2, m3]
@@ -646,8 +667,8 @@ def utils_table(speaker_model, listener_model, example, special):
 		else:
 			got_special = False
 			speaker_message, _speaker_probs = speaker_model.infer_from_speaker_policy(target_input)
-			chosen_target_idx, _listener_probs = listener_model.infer_from_listener_policy(speaker_message, candidates)
-			message_prob = utils_get_message_prob(speaker_message, _speaker_probs)
+			chosen_target_idx, _listener_probs, us = listener_model.infer_from_listener_policy(speaker_message, candidates)
+			message_prob = utils_get_message_prob(speaker_message, _speaker_probs, speaker_model.config['maskdigit'])
 	
 	reward = utils_calculate_reward(chosen_target_idx,target_candidate_idx)
 	cs, cp, _ = utils_get_choice_scores(listener_model, candidates, np.array(speaker_message), chosen_target_idx)
@@ -672,7 +693,7 @@ def utils_table(speaker_model, listener_model, example, special):
 		for m in range(len(messages_all)):
 			if equi[1][0][m] == np.argmax(target_candidate_idx):
 				l_sm = messages_all[m]
-				l_ms4t_info[l_sm] = utils_get_choice_scores(listener_model, candidates, np.array(l_sm),  np.argmax(target_candidate_idx))[0]
+				l_ms4t_info[l_sm] = utils_get_choice_scores(listener_model, candidates, np.array(l_sm),  np.argmax(target_candidate_idx))[1]
 				#l_payoff = listener_model.get_internal_model_torm(np.array(l_sm), candidates)[3][0][equi[1][0][m]]
 				#l_ms4t_info[l_sm] = l_payoff
 
@@ -681,15 +702,17 @@ def utils_table(speaker_model, listener_model, example, special):
 		l_ms4t_info = {}
 		for message_no in remain_set:
 			l_sm = messages_all[message_no]
-			l_ms4t_info[l_sm] = utils_get_choice_scores(listener_model, candidates, np.array(l_sm),  np.argmax(target_candidate_idx))[0]
+			l_ms4t_info[l_sm] = utils_get_choice_scores(listener_model, candidates, np.array(l_sm),  np.argmax(target_candidate_idx))[1]
 			#l_payoff = listener_model.get_internal_model_torm(np.array(l_sm), candidates)[3][0][np.argmax(target_candidate_idx)]
 			#l_ms4t_info[l_sm] = l_payoff
 	else:
 		s_m4t_info = []
 		l_ms4t_info = {}
 
-		
-	return reward, candidates[np.argmax(target_candidate_idx)], np.array(speaker_message), chosen_target_idx, message_prob, cs, s_m4t_info, l_ms4t_info
+	#t2 = time.time()
+	#print('0-1',t1-t0)
+	#print('1-2',t2-t1)
+	return reward, candidates[np.argmax(target_candidate_idx)], np.array(speaker_message), chosen_target_idx, message_prob, cp, s_m4t_info, l_ms4t_info
 	#return reward, candidates[np.argmax(target_candidate_idx)], np.array(speaker_message), chosen_target_idx, message_prob, cs, None, None
 
 def utils_table_virtual(speaker_model, listener_model, virtual_s4l, virtual_l4s, example, special):
@@ -706,25 +729,26 @@ def utils_table_virtual(speaker_model, listener_model, virtual_s4l, virtual_l4s,
 		message_prob = s_m4t_info[1]
 	else:
 		speaker_message, _speaker_probs = speaker_model.infer_from_speaker_policy(target_input)
-		message_prob = utils_get_message_prob(speaker_message, _speaker_probs)
+		message_prob = utils_get_message_prob(speaker_message, _speaker_probs, speaker_model.config['maskdigit'])
 		speaker_message = tuple(speaker_message) 
 		
 	if l_ms4t_info!={}:
 		if speaker_message in l_ms4t_info.keys():
 			reward = 1
 			chosen_target_idx = np.argmax(target_candidate_idx)
-			cs = l_ms4t_info[speaker_message]
+			cp = l_ms4t_info[speaker_message]
 		else:
 			reward = 0
 			chosen_target_idx = -1
-			cs = -10000
+			cp = 0
 	else:
-		chosen_target_idx, _listener_probs = listener_model.infer_from_listener_policy(np.array(speaker_message), candidates)
+		chosen_target_idx, _listener_probs, us = listener_model.infer_from_listener_policy(np.array(speaker_message), candidates)
 		reward = utils_calculate_reward(chosen_target_idx,target_candidate_idx)
 		cs, cp, _ = utils_get_choice_scores(listener_model, candidates, np.array(speaker_message))
 
-	return reward, candidates[np.argmax(target_candidate_idx)], np.array(speaker_message), chosen_target_idx, message_prob, cs, None, None
+	return reward, candidates[np.argmax(target_candidate_idx)], np.array(speaker_message), chosen_target_idx, message_prob, cp, None, None
 
+#######################################################################################
 def utils_short_term_train(speaker_model, listener_model, candidates, policy4shortgame, stop=0.1, maxrounds=1000, trainspeaker=True, trainlistener=True):
 	"""
 	All inputs: Just one instance. No bs dimensize.
@@ -741,10 +765,10 @@ def utils_short_term_train(speaker_model, listener_model, candidates, policy4sho
 
 		if policy4shortgame=='sample':
 			speaker_message, speaker_probs = speaker_model.sample_from_speaker_policy(target_input)
-			chosen_target_idx, listener_probs = listener_model.sample_from_listener_policy(speaker_message, new_candidates)
+			chosen_target_idx, listener_probs, us = listener_model.sample_from_listener_policy(speaker_message, new_candidates)
 		elif policy4shortgame=='infer':
 			speaker_message, speaker_probs = speaker_model.infer_from_speaker_policy(target_input)
-			chosen_target_idx, listener_probs = listener_model.infer_from_listener_policy(speaker_message, new_candidates)
+			chosen_target_idx, listener_probs, us = listener_model.infer_from_listener_policy(speaker_message, new_candidates)
 		else:
 			assert False
 		
@@ -776,7 +800,7 @@ def utils_game_full(speaker_model, listener_model, example, policy4shortgame, ma
 	speaker_model.load_memory()
 	listener_model.load_memory()
 	utils_short_term_train(speaker_model, listener_model, candidates, policy4shortgame, maxrounds=maxrounds)
-	chosen_target_idx, _listener_probs = listener_model.infer_from_listener_policy(speaker_message, candidates)					
+	chosen_target_idx, _listener_probs, us = listener_model.infer_from_listener_policy(speaker_message, candidates)					
 	speaker_model.load_memory()
 	listener_model.load_memory()
 	reward = utils_calculate_reward(chosen_target_idx,target_candidate_idx)
@@ -791,15 +815,84 @@ def utils_game_ibr(speaker_model, listener_model, example, policy4shortgame, max
 		utils_short_term_train(speaker_model, listener_model, candidates, policy4shortgame, maxrounds=maxrounds, trainlistener=False)
 		utils_short_term_train(speaker_model, listener_model, candidates, policy4shortgame, maxrounds=maxrounds, trainspeaker=False)
 	speaker_message, _speaker_probs = speaker_model.infer_from_speaker_policy(target_input)
-	chosen_target_idx, _listener_probs = listener_model.infer_from_listener_policy(speaker_message, candidates)					
+	chosen_target_idx, _listener_probs, us = listener_model.infer_from_listener_policy(speaker_message, candidates)					
 	speaker_model.load_memory()
 	listener_model.load_memory()
 	reward = utils_calculate_reward(chosen_target_idx,target_candidate_idx)
 	return reward, target_input, speaker_message, chosen_target_idx
 
-def utils_game_explicit(speaker_model, listener_model, example, policy4shortgame, maxrounds):
-	pass
+def utils_game_zihe(speaker_model, listener_model, example, sample_round_explicit):
+	
+	no_correct = 0
+	multiple_correct = 0
+	
+	target_input, candidates, target_candidate_idx, sampled_target_idx, candidate_idx_set = example
+	n_classes = len(candidates)
 
+	def get_m():
+		ms = []
+		sm_all = Counter()
+		local_all = []
+		
+		for c in candidates:
+			local = Counter()
+			for _rp in range(sample_round_explicit):
+				sm, _sp = speaker_model.infer_from_speaker_policy(c)
+				sm = tuple(sm.tolist())
+				if sm not in local:
+					sm_all[sm] += 1
+				local[sm] += 1
+			local_all.append(local)
+		
+		for c in range(n_classes):
+			local = local_all[c]
+			for sm in list(local.keys()):
+				if sm_all[sm] > 1:
+					del(local[sm])
+			if local:
+				localsum = sum(local.values()) + 0.0
+				for sm in local:
+					local[sm] /= localsum
+
+		for c in range(n_classes):
+			local = local_all[c]
+			if local:
+				m = weighted_random_by_dct(local)
+			else:
+				m, _sp = speaker_model.infer_from_speaker_policy(candidates[c])
+			m = np.array(m)
+			ms.append(m)
+		return ms
+
+	#real shit starts
+	ms_s = get_m()
+	speaker_message = ms_s[np.argmax(target_candidate_idx)]
+
+	ms_l = get_m()
+	
+	ds = []
+	for m in ms_l:
+		ds.append(message_similarity_hard(speaker_message, m))
+	ds = np.array(ds, dtype=np.float)
+	
+	if np.sum(ds) == 1:
+		solution = 'correct'
+		chosen_target_idx = np.argmax(ds)
+
+	elif np.sum(ds) == 0:
+		solution = 'no_correct'
+		chosen_target_idx, _listener_probs, us = listener_model.infer_from_listener_policy(speaker_message, candidates)		
+	
+	elif np.sum(ds) > 1:
+		solution = 'multiple_correct'
+		chosen_target_idx, _listener_probs, us = listener_model.infer_from_listener_policy(speaker_message, candidates)	
+	
+
+	reward = self.calculate_reward(chosen_target_idx,target_candidate_idx)
+	
+	return reward, target_input, speaker_message, chosen_target_idx, solution
+
+#######################################################################################
 class BaseAgents(object):
 	""" 
 	"""
@@ -807,19 +900,43 @@ class BaseAgents(object):
 		self.config = config
 		self.init_dataset()
 			
-	def training_log(self):
+	def training_log(self, metrics):
 		if self.config['n_batches'] > 0:
 			with open(os.path.join(self.config['modelpath'], 'logs'), 'a+') as ff:
 				ff.write("Training\n" + json.dumps(self.config) + "\n###############\n")
+				print(" Accuracy: %s %%"%(metrics["accuracy"]))
+				ff.write(" Accuracy: %s %%\n"%(metrics["accuracy"]))
+				print("Message lexicon size: %s"%(len(metrics["speaker_action_dist"])))
+				ff.write("Message lexicon size: %s \n"%(len(metrics["speaker_action_dist"])))
+				#ff.write("Speaker action distribution: %s \n"%(metrics["speaker_action_dist"]))
+				print("Listener action distribution: %s"%(metrics["listener_action_dist"]))
+				ff.write("Listener action distribution: %s \n"%(metrics["listener_action_dist"]))
+				print("reward distribution: %s"%(metrics["reward_dist"]))
+				ff.write("reward distribution: %s \n"%(metrics["reward_dist"]))
+				print("###############\n")
+				ff.write("###############\n")
 		
-	def testing_log(self, name, metrics):
-		with open(os.path.join(self.config['modelpath'], 'logs'), 'a+') as ff:
-			ff.write(name + " Accuracy: %s %%\n"%(metrics["accuracy"]))
-			ff.write("Message lexicon size: %s \n"%(len(metrics["speaker_action_dist"])))
-			#ff.write("Speaker action distribution: %s \n"%(metrics["speaker_action_dist"]))
-			ff.write("Listener action distribution: %s \n"%(metrics["listener_action_dist"]))
-			ff.write("reward distribution: %s \n"%(metrics["reward_dist"]))
-			ff.write("###############\n")
+	def testing_log(self, path, datas):
+		
+		for key in datas.keys():
+			metrics = obtain_metrics(datas[key]['testing_stats'], self.config)
+			
+			with open(os.path.join(path, 'logs'), 'a+') as ff:
+				
+				ff.write("\n###############\n"+key+"\n###############\n")
+
+				ff.write(" Accuracy: %s %%\n"%(metrics["accuracy"]))
+				ff.write("Message lexicon size: %s \n"%(len(metrics["speaker_action_dist"])))
+				#ff.write("Speaker action distribution: %s \n"%(metrics["speaker_action_dist"]))
+				ff.write("Listener action distribution: %s \n"%(metrics["listener_action_dist"]))
+				ff.write("reward distribution: %s \n"%(metrics["reward_dist"]))
+				#ff.write("###############\n")
+
+				nepoch = len(datas[key]['rds'])
+				ce = st.t.ppf((1 + 0.95) / 2., nepoch-1)
+				ff.write('reward %.3f %.3f %.3f\n' %(np.mean(datas[key]['rds']), np.std(datas[key]['rds']), st.sem(datas[key]['rds']) * ce))
+				ff.write('message_prob %.2f %.2f %.2f\n' %(np.mean(datas[key]['mps']), np.std(datas[key]['mps']), st.sem(datas[key]['mps']) * ce))
+				ff.write('choice_prob %.2f %.2f %.2f\n' %(np.mean(datas[key]['css']), np.std(datas[key]['css']), st.sem(datas[key]['css']) * ce))
 
 	def fit(self):
 		pbar = ProgressBar()
@@ -827,146 +944,137 @@ class BaseAgents(object):
 			batch = self.data_generator.training_batch_generator()
 			utils_fit(self.speaker_model, self.listener_model, batch)
 			if _n%5000==0 or _n==self.config['n_batches']-1:
-				self.evaluate_on_training_set()
+				metrics = self.evaluate_on_training_set()
+				self.training_log(metrics)
 				self.speaker_model.save()
 				self.speaker_model.save_opt()
-				#self.listener_model.save()
-				self.listener_model.save_weights()
+				self.listener_model.save()
 				self.listener_model.save_opt()
-				self.training_log()
 
 	def evaluate_on_training_set(self):
 		"""
 		All inputs: Just one instance. No bs dimensize.
 		"""
 		self.training_eval_stats = []
-		pbar = get_pbar(self.data_generator.n_training_instances)
+		#pbar = get_pbar(self.data_generator.n_training_instances)
 		for i, train_example in enumerate(self.data_generator.training_set_evaluation_generator()):
-			pbar.update(i)
+			#pbar.update(i)
 			reward, target_input, speaker_message, chosen_target_idx, mp, cs, _, _ = utils_test(self.speaker_model, self.listener_model, train_example)
 			self.training_eval_stats.append({"reward": reward, "input": target_input, "message": arraytostring(speaker_message), "chosen_target_idx": [chosen_target_idx]})
-		pbar.finish()
+		#pbar.finish()
 		metrics = obtain_metrics(self.training_eval_stats, self.config)
-		self.testing_log("Evaluation", metrics)
+		return metrics
 
 	def predict(self):
 		"""
 		All inputs: Just one instance. No bs dimensize.
 		"""
-		nepoch = 3
+		nepoch = self.config['predict_nepoch']
+		is_rnnconv = type(self).__name__ == 'Agents_rnnconv'
 		ce = st.t.ppf((1 + 0.95) / 2., nepoch-1)
 		pbar = get_pbar(nepoch * self.data_generator.n_testing_instances)
+		resultpath = os.path.join(self.config['modelpath'],'test_'+datetime.datetime.now().strftime("%Y.%m.%d-%H:%M:%S"))
+		os.mkdir(resultpath)
+		#
 		
-
 		datas = {}
-		keys = ['baseline', 'prag_sample_0', 'prag_sample_0_5', 'prag_argmax', 'prag_argmax_virtual', 'rsa_2', 'ibr_2', 'rsa_3', 'ibr_3', 'rsa_equi', 'rsa_equi_virtual', 'ibr_equi', 'ibr_equi_virtual', 'table', 'table_virtual', 'table_special', 'table_special_virtual']
-		#keys = ['baseline', 'prag_sample_0', 'prag_sample_0_5', 'prag_argmax', 'rsa_2', 'ibr_2', 'rsa_3', 'ibr_3', 'rsa_equi', 'ibr_equi', 'table', 'table_special']
-		#keys = ['table_special']
+		keys = ['baseline', 'prag_sample_0', 'prag_sample_0.5', 'prag_argmax', 'prag_argmax_virtual', 'rsa_2', 'ibr_2', 'rsa_equi', 'rsa_equi_virtual', 'ibr_equi', 'ibr_equi_virtual', 'table', 'table_virtual', 'table_special', 'table_special_virtual']		
+		#keys = ['baseline', 'prag_sample_0', 'prag_sample_0.5', 'prag_argmax', 'rsa_2', 'ibr_2', 'rsa_equi', 'ibr_equi', 'table', 'table_special',]		
+		#keys = ['baseline']
 		
 		for key in keys:
-			datas[key] = {'testing_stats':[], 'stat':{}, 'rd':0, 'rds':[], 'mp':0, 'mps':[], 'cs':0, 'css':[], 'pathname':'images_'+key}
-		
-		message_im = {}
-		
+			datas[key] = {'testing_stats':[], 'stat':{}, 'message_im':{}, 'rd':0, 'rds':[], 'mp':0, 'mps':[], 'cs':0, 'css':[], 'pathname':os.path.join(resultpath, 'images_'+key)}	
+			if is_rnnconv:
+				os.mkdir(datas[key]['pathname'])
+			
 		def add_data(key, reward, target_input, speaker_message, chosen_target_idx, mp, cs, i):	
 			datas[key]['testing_stats'].append({"reward": reward, "input": target_input, "message": arraytostring(speaker_message), "chosen_target_idx": [chosen_target_idx]})
-			message_str = os.path.join(datas[key]['pathname'], utils_digit2alphabet(speaker_message))
-			if not os.path.exists(datas[key]['pathname']):
-				os.mkdir(datas[key]['pathname'])
-			if not os.path.exists(message_str):
-				os.mkdir(message_str)
-				message_im[message_str] = []
-			
-			message_im[message_str].append(utils_imrmbg(target_input))
-			plt.imsave(os.path.join(message_str, str(i)+'.png'), target_input)
-			if str(speaker_message) not in datas[key]['stat']:
-				datas[key]['stat'][str(speaker_message)] = Counter()
-			datas[key]['stat'][str(speaker_message)][test_example[3]] += 1
-
 			datas[key]['rd'] += reward
 			if reward>0:
 				datas[key]['mp'] += mp
 				datas[key]['cs'] += cs
-			
-			
+			if is_rnnconv:
+				message_in_letters = utils_digit2alphabet(speaker_message)
+				message_str = os.path.join(datas[key]['pathname'], message_in_letters)
+				if not os.path.exists(message_str):
+					os.mkdir(message_str)
+					datas[key]['message_im'][message_in_letters] = []
+					datas[key]['stat'][message_in_letters] = Counter()
+				#plt.imsave(os.path.join(message_str, str(i)+'.png'), target_input)
+				datas[key]['message_im'][message_in_letters].append(utils_imrmbg(target_input))
+				datas[key]['stat'][message_in_letters][test_example[3]] += 1
+
 		for epoch in range(nepoch):
 			count_epoch = 0
 			for i, test_example in enumerate(self.data_generator.testing_set_generator()):
-				pbar.update(epoch*self.data_generator.n_testing_instances+i)
-				
-				same_set = [[0],[1],[2],[3],[4,5],[6,7]]
-				for s in range(6):
-					if test_example[4][0] in same_set[s]:
-						sn0 = s
-					if test_example[4][1] in same_set[s]:
-						sn1 = s
-				if sn0!=sn1:
-					continue
-
+				i_tot = epoch*self.data_generator.n_testing_instances+i
+				pbar.update(i_tot)
+				if 'challenge' in self.config.keys() and self.config['challenge']:
+					if not utils_judge_sameset(test_example, self.config['challenge_same_set']):
+						continue
 				count_epoch += 1.0
-				candidates = test_example[1]
-				#import pdb; pdb.set_trace()
-				#plt.imsave('torm0.png', candidates[0])
-				#plt.imsave('torm1.png', candidates[1])
 				
-
-
-
+				if 'baseline' in keys:					
+					reward, target_input, speaker_message, chosen_target_idx, mp, cs, _, _ = utils_test(self.speaker_model, self.listener_model, test_example)
+					add_data('baseline', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i_tot)
 				
-				reward, target_input, speaker_message, chosen_target_idx, mp, cs, _, _ = utils_test(self.speaker_model, self.listener_model, test_example)
-				add_data('baseline', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i)
+				if 'prag_sample_0' in keys:
+					reward, target_input, speaker_message, chosen_target_idx, mp, cs, _, _ = utils_prag_sample(self.speaker_model, self.listener_model, test_example, 0)
+					add_data('prag_sample_0', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i_tot)
+					
+				if 'prag_sample_0.5' in keys:
+					reward, target_input, speaker_message, chosen_target_idx, mp, cs, _, _ = utils_prag_sample(self.speaker_model, self.listener_model, test_example, 0.5)
+					add_data('prag_sample_0.5', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i_tot)
 				
+				if 'prag_argmax' in keys:
+					reward, target_input, speaker_message, chosen_target_idx, mp, cs, _, _ = utils_prag_argmax(self.speaker_model, self.listener_model, test_example)
+					add_data('prag_argmax', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i_tot)
+
+				if 'rsa_2' in keys:
+					reward, target_input, speaker_message, chosen_target_idx, mp, cs, _, _ = utils_prag_iter(self.speaker_model, self.listener_model, test_example, 2, False, False, False)
+					add_data('rsa_2', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i_tot)
+
+				if 'ibr_2' in keys:
+					reward, target_input, speaker_message, chosen_target_idx, mp, cs, _, _ = utils_prag_iter(self.speaker_model, self.listener_model, test_example, 2, False, True, True)
+					add_data('ibr_2', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i_tot)
+
+				if 'rsa_equi' in keys:
+					reward, target_input, speaker_message, chosen_target_idx, mp, cs, _, _ = utils_prag_iter(self.speaker_model, self.listener_model, test_example, 'converge', False, False, False)
+					add_data('rsa_equi', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i_tot)
+
+				if 'ibr_equi' in keys:
+					reward, target_input, speaker_message, chosen_target_idx, mp, cs, _, _ = utils_prag_iter(self.speaker_model, self.listener_model, test_example, 'converge', False, True, True)
+					add_data('ibr_equi', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i_tot)
 				
-				reward, target_input, speaker_message, chosen_target_idx, mp, cs, _, _ = utils_prag_sample(self.speaker_model, self.listener_model, test_example, 0)
-				add_data('prag_sample_0', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i)
+				if 'table' in keys:	
+					reward, target_input, speaker_message, chosen_target_idx, mp, cs, _, _ = utils_table(self.speaker_model, self.listener_model, test_example, False)
+					add_data('table', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i_tot)
+					
+				if 'table_special' in keys:	
+					reward, target_input, speaker_message, chosen_target_idx, mp, cs, _, _ = utils_table(self.speaker_model, self.listener_model, test_example, True)
+					add_data('table_special', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i_tot)
+					
+				if 'prag_argmax_virtual' in keys:
+					reward, target_input, speaker_message, chosen_target_idx, mp, cs, _, _ = utils_prag_argmax_virtual(self.speaker_model, self.listener_model, self.newlistener_a, test_example)
+					add_data('prag_argmax_virtual', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i_tot)
 				
-				reward, target_input, speaker_message, chosen_target_idx, mp, cs, _, _ = utils_prag_sample(self.speaker_model, self.listener_model, test_example, 0.5)
-				add_data('prag_sample_0_5', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i)
+				if 'rsa_equi_virtual' in keys:	
+					reward, target_input, speaker_message, chosen_target_idx, mp, cs, _, _ = utils_prag_iter_virtual(self.speaker_model, self.listener_model, self.newspeaker_a, self.newlistener_a, test_example, 'converge', False, False, False)
+					add_data('rsa_equi_virtual', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i_tot)
 
-				reward, target_input, speaker_message, chosen_target_idx, mp, cs, _, _ = utils_prag_argmax(self.speaker_model, self.listener_model, test_example)
-				add_data('prag_argmax', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i)
+				if 'ibr_equi_virtual' in keys:	
+					reward, target_input, speaker_message, chosen_target_idx, mp, cs, _, _ = utils_prag_iter_virtual(self.speaker_model, self.listener_model, self.newspeaker_a, self.newlistener_a, test_example, 'converge', False, True, True)
+					add_data('ibr_equi_virtual', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i_tot)
+					
+				if 'table_virtual' in keys:	
+					reward, target_input, speaker_message, chosen_target_idx, mp, cs, _, _ = utils_table_virtual(self.speaker_model, self.listener_model, self.newspeaker_a, self.newlistener_a, test_example, False)
+					add_data('table_virtual', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i_tot)
 
-				reward, target_input, speaker_message, chosen_target_idx, mp, cs, _, _ = utils_prag_iter(self.speaker_model, self.listener_model, test_example, 2, False, False, False)
-				add_data('rsa_2', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i)
+				if 'table_special_virtual' in keys:	
+					reward, target_input, speaker_message, chosen_target_idx, mp, cs, _, _ = utils_table_virtual(self.speaker_model, self.listener_model, self.newspeaker_a, self.newlistener_a, test_example, True)
+					add_data('table_special_virtual', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i_tot)
+					
 
-				reward, target_input, speaker_message, chosen_target_idx, mp, cs, _, _ = utils_prag_iter(self.speaker_model, self.listener_model, test_example, 2, False, True, True)
-				add_data('ibr_2', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i)
-
-
-				reward, target_input, speaker_message, chosen_target_idx, mp, cs, _, _ = utils_prag_iter(self.speaker_model, self.listener_model, test_example, 3, False, False, False)
-				add_data('rsa_3', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i)
-
-				reward, target_input, speaker_message, chosen_target_idx, mp, cs, _, _ = utils_prag_iter(self.speaker_model, self.listener_model, test_example, 3, False, True, True)
-				add_data('ibr_3', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i)
-
-				reward, target_input, speaker_message, chosen_target_idx, mp, cs, _, _ = utils_prag_iter(self.speaker_model, self.listener_model, test_example, 'converge', False, False, False)
-				add_data('rsa_equi', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i)
-
-				reward, target_input, speaker_message, chosen_target_idx, mp, cs, _, _ = utils_prag_iter(self.speaker_model, self.listener_model, test_example, 'converge', False, True, True)
-				add_data('ibr_equi', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i)
-
-				reward, target_input, speaker_message, chosen_target_idx, mp, cs, _, _ = utils_table(self.speaker_model, self.listener_model, test_example, False)
-				add_data('table', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i)
-				
-				reward, target_input, speaker_message, chosen_target_idx, mp, cs, _, _ = utils_table(self.speaker_model, self.listener_model, test_example, True)
-				add_data('table_special', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i)
-				
-				
-				reward, target_input, speaker_message, chosen_target_idx, mp, cs, _, _ = utils_prag_argmax_virtual(self.speaker_model, self.listener_model, self.newlistener_a, test_example)
-				add_data('prag_argmax_virtual', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i)
-
-				reward, target_input, speaker_message, chosen_target_idx, mp, cs, _, _ = utils_prag_iter_virtual(self.speaker_model, self.listener_model, self.newspeaker_a, self.newlistener_a, test_example, 'converge', False, False, False)
-				add_data('rsa_equi_virtual', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i)
-
-				reward, target_input, speaker_message, chosen_target_idx, mp, cs, _, _ = utils_prag_iter_virtual(self.speaker_model, self.listener_model, self.newspeaker_a, self.newlistener_a, test_example, 'converge', False, True, True)
-				add_data('ibr_equi_virtual', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i)
-				
-				reward, target_input, speaker_message, chosen_target_idx, mp, cs, _, _ = utils_table_virtual(self.speaker_model, self.listener_model, self.newspeaker_a, self.newlistener_a, test_example, False)
-				add_data('table_virtual', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i)
-
-				reward, target_input, speaker_message, chosen_target_idx, mp, cs, _, _ = utils_table_virtual(self.speaker_model, self.listener_model, self.newspeaker_a, self.newlistener_a, test_example, True)
-				add_data('table_special_virtual', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i)
-				
 			for key in keys:
 				datas[key]['rds'].append(datas[key]['rd'] / count_epoch)
 				datas[key]['mps'].append(datas[key]['mp'] / datas[key]['rd'] )
@@ -977,127 +1085,19 @@ class BaseAgents(object):
 				
 		pbar.finish()
 
+		self.testing_log(resultpath, datas)
 		for key in keys:
 			print('#########################')
 			print(key)
-			metrics = obtain_metrics(datas[key]['testing_stats'], self.config)
-			self.testing_log("Test", metrics)		
 			#pprint.pprint(datas[key]['stat'])
-
-			print('reward', np.mean(datas[key]['rds']), np.std(datas[key]['rds']), st.sem(datas[key]['rds']) * ce)
-			print('message_prob', np.mean(datas[key]['mps']), np.std(datas[key]['mps']), st.sem(datas[key]['mps']) * ce)
-			print('choice_prob', np.mean(datas[key]['css']), np.std(datas[key]['css']), st.sem(datas[key]['css']) * ce)
+			print('reward %.3f %.3f %.3f' %(np.mean(datas[key]['rds']), np.std(datas[key]['rds']), st.sem(datas[key]['rds']) * ce))
+			print('message_prob %.2f %.2f %.2f' %(np.mean(datas[key]['mps']), np.std(datas[key]['mps']), st.sem(datas[key]['mps']) * ce))
+			print('choice_prob %.2f %.2f %.2f' %(np.mean(datas[key]['css']), np.std(datas[key]['css']), st.sem(datas[key]['css']) * ce))
 			
-	
-			#print('mp, cs:', datas[key]['mp']/metrics['reward_dist'][1], datas[key]['cs']/metrics['reward_dist'][1])
-			#rewards = [kts['mp'] for kts in datas[key]['testing_stats']]
+			for mim in datas[key]['message_im'].keys():
+				message_str = os.path.join(datas[key]['pathname'], mim)
+				plt.imsave(message_str+'/'+key+'_'+mim+'_average.png', utils_immean(datas[key]['message_im'][mim]))
 		
-
-
-
-		for mim in message_im.keys():
-			#import pdb; pdb.set_trace()
-			plt.imsave(mim+'/'+mim[-5:]+'average.png', utils_immean(message_im[mim]))
-		
-
-	def predict_game_explicit(self):
-		"""
-		All inputs: Just one instance. No bs dimensize.
-		"""
-		self.testing_game_explicit_stats = []
-		total_reward = 0
-		test_set = self.data_generator.testing_set_generator()
-		test_size = self.data_generator.n_testing_instances
-		pbar = get_pbar(test_size)
-
-		no_correct = 0
-		multiple_correct = 0
-
-		for i, test_example in enumerate(test_set):
-			pbar.update(i)
-			target_input, candidates, target_candidate_idx, sampled_target_idx, candidate_idx_set = test_example
-			
-			def get_m():
-				ms = []
-				sm_all = Counter()
-				local_all = []
-				
-				for c in candidates:
-					local = Counter()
-					for _rp in range(self.config['sample_round_explicit']):
-						sm, _sp = self.speaker_model.infer_from_speaker_policy(c)
-						sm = tuple(sm.tolist())
-						if sm not in local:
-							sm_all[sm] += 1
-						local[sm] += 1
-					local_all.append(local)
-				
-				for c in range(self.config['n_classes']):
-					local = local_all[c]
-					for sm in list(local.keys()):
-						if sm_all[sm] > 1:
-							del(local[sm])
-					if local:
-						localsum = sum(local.values()) + 0.0
-						for sm in local:
-							local[sm] /= localsum
-
-				
-				for c in range(self.config['n_classes']):
-					local = local_all[c]
-					if local:
-						m = weighted_random_by_dct(local)
-					else:
-						m, _sp = self.speaker_model.infer_from_speaker_policy(candidates[c])
-					m = np.array(m)
-					ms.append(m)
-					
-				return ms
-
-			#real shit starts
-			ms_s = get_m()
-			speaker_message = ms_s[np.argmax(target_candidate_idx)]
-
-			ms_l = get_m()
-			
-			ds = []
-			for m in ms_l:
-				ds.append(message_similarity_hard(speaker_message, m))
-			ds = np.array(ds, dtype=np.float)
-			
-			
-			if np.sum(ds) == 1:
-				chosen_target_idx = np.argmax(ds)
-
-			elif np.sum(ds) == 0:
-				no_correct += 1
-				chosen_target_idx, _listener_probs = self.listener_model.infer_from_listener_policy(speaker_message, candidates)		
-			
-			elif np.sum(ds) > 1:
-				multiple_correct += 1			
-				chosen_target_idx, _listener_probs = self.listener_model.infer_from_listener_policy(speaker_message, candidates)	
-			
-			#pdb.set_trace()
-			#ds = ds/np.sum(ds)
-			#chosen_target_idx = np.random.choice(np.arange(self.config['n_classes']), p=ds)
-			#speaker_message, _speaker_probs = self.speaker_model.infer_from_speaker_policy(target_input)	
-			#chosen_target_idx, _listener_probs = self.listener_model.infer_from_listener_policy(speaker_message, candidates)	
-			
-			reward = self.calculate_reward(chosen_target_idx,target_candidate_idx)
-			total_reward += reward
-
-			self.testing_game_explicit_stats.append({
-				"reward": reward,
-				"input": target_input,
-				"message": arraytostring(speaker_message),
-				"chosen_target_idx": [chosen_target_idx],
-				})
-			
-		pbar.finish()
-		metrics = obtain_metrics(self.testing_game_explicit_stats, self.config)
-		self.testing_log("Test game explicit", metrics)
-		print(no_correct)
-		print(multiple_correct)
 
 class Agents_dense(BaseAgents):
 	def __init__(self, config):
@@ -1116,12 +1116,15 @@ class Agents_dense(BaseAgents):
 	def init_dataset(self):
 		if not os.path.exists(self.config['modelpath']):
 			os.mkdir(self.config['modelpath'])
+			
+		datafile = os.path.join('datadir', 'visa_data_generator.pkl')
+		if not os.path.exists(datafile):
 			self.data_generator = VisaDatasetWrapper()
 			self.data_generator.create_train_test_datasets(self.config)
-			with open(os.path.join(self.config['modelpath'], 'data_generator.pkl'), 'wb') as f:
+			with open(datafile, 'wb') as f:
 				pickle.dump(self.data_generator, f)
 		else:
-			with open(os.path.join(self.config['modelpath'], 'data_generator.pkl'), 'rb') as f:
+			with open(datafile, 'rb') as f:
 				self.data_generator = pickle.load(f)
 
 class Agents_rnnbasic(Agents_dense):
@@ -1143,30 +1146,31 @@ class Agents_rnnconv(Agents_dense):
 		super(Agents_dense, self).__init__(config)
 		self.speaker_model = PaperSpeakerNetwork_rnn_conv(os.path.join(self.config['modelpath'], 'speaker_lstm.h5'),
 															os.path.join(self.config['modelpath'], 'speaker_opt.pkl'),
-															0.0001,#0.0001,
+															0.001,#0.0001,
 															0.01, #0.01,
 															'speaker_conv.h5',
 															False,
 															self.config)
 		self.listener_model = PaperListenerNetwork_rnn_conv(os.path.join(self.config['modelpath'], 'listener_lstm.h5'),
 															os.path.join(self.config['modelpath'], 'listener_opt.pkl'),
-															0.0001,#0.0001,
+															0.001,#0.0001,
 															0.001, #0.001,
 															'listener_conv.h5',
 															False,
 															self.config)
-		if not os.path.exists('model_pretrain'):
-			os.mkdir('model_pretrain')
 		
 	def init_dataset(self):
 		if not os.path.exists(self.config['modelpath']):
 			os.mkdir(self.config['modelpath'])
+
+		datafile = os.path.join('datadir', 'bullet_data_generator.pkl')
+		if not os.path.exists(datafile):
 			self.data_generator = BulletWrapper()
 			self.data_generator.create_train_test_datasets(self.config)
-			with open(os.path.join(self.config['modelpath'], 'data_generator.pkl'), 'wb') as f:
+			with open(datafile, 'wb') as f:
 				pickle.dump(self.data_generator, f)
 		else:
-			with open(os.path.join(self.config['modelpath'], 'data_generator.pkl'), 'rb') as f:
+			with open(datafile, 'rb') as f:
 				self.data_generator = pickle.load(f)
 
 	def pretrain_fit_conv(self):
@@ -1185,21 +1189,21 @@ class Agents_rnnconv(Agents_dense):
 		print('pretrain_listener_shape_fixconv')
 		pretrain_conv(self.listener_model.conv_model, self.data_generator, 'shape', True, 50000, None)
 
-	def set_virtual(self):
+	def set_virtual_origin(self):
 		self.newspeaker_a = self.speaker_model
 		self.newlistener_a = self.listener_model
 
 	def set_virtual_real(self):
-		self.newspeaker_a = PaperSpeakerNetwork_rnn_conv(os.path.join(self.config['modelpath'], 'newspeaker_a_lstm.h5'),
-														os.path.join(self.config['modelpath'], 'newspeaker_a_opt.pkl'),
+		self.newspeaker_a = PaperSpeakerNetwork_rnn_conv(os.path.join(self.config['modelpath'], 'newspeaker_lstm.h5'),
+														os.path.join(self.config['modelpath'], 'newspeaker_opt.pkl'),
 														0.0001,
 														0.01,
 														'listener_conv.h5',
 														False,
 														self.config)
 
-		self.newlistener_a = PaperListenerNetwork_rnn_conv(os.path.join(self.config['modelpath'], 'newlistener_a_lstm.h5'),
-														os.path.join(self.config['modelpath'], 'newlistener_a_opt.pkl'),
+		self.newlistener_a = PaperListenerNetwork_rnn_conv(os.path.join(self.config['modelpath'], 'newlistener_lstm.h5'),
+														os.path.join(self.config['modelpath'], 'newlistener_opt.pkl'),
 														0.0001,
 														0.001,
 														'speaker_conv.h5',
@@ -1253,7 +1257,7 @@ class Agents_rnnconv(Agents_dense):
 		#	batch = self.data_generator.training_batch_generator()
 			ssim = utils_virtual_check_speaker(self.speaker_model, self.newspeaker_a, test_example)
 			ssimtotal += ssim
-		print(ssimtotal/i)
+		print("speaker fidelity:", ssimtotal/i)
 
 	def check_virtual_listener(self):
 		lsimtotal = 0
@@ -1266,7 +1270,7 @@ class Agents_rnnconv(Agents_dense):
 		#	batch = self.data_generator.training_batch_generator()
 			lsim = utils_virtual_check_listener(self.speaker_model, self.listener_model, self.newlistener_a, test_example)
 			lsimtotal += lsim
-		print(lsimtotal/i)
+		print("listener fidelity:", lsimtotal/i)
 
 '''
 class PaperSymbolicAgents_rnn_conv_crowd(PaperSymbolicAgents_rnn_conv):

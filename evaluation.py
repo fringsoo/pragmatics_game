@@ -33,7 +33,7 @@ import collections
 def task_accuracy_metrics(reward_list):
 	""" Accuracy as percentage of examples that received rewards """
 	accuracy = sum(reward_list)*100/float(len(reward_list))
-	print("Total Reward: %s, Accuracy: %s %%"%(sum(reward_list),accuracy))
+	#print("Total Reward: %s, Accuracy: %s %%"%(sum(reward_list),accuracy))
 	return accuracy
 
 def action_distribution(action_list):
@@ -102,7 +102,7 @@ def obtain_metrics(training_stats, config_dict):
 			
 	metrics["speaker_action_dist"] = action_distribution(message_list)
 	#print("Speaker action distribution: %s"%(metrics["speaker_action_dist"]))
-	print("Message lexicon size: %s"%(len(metrics["speaker_action_dist"])))
+	#print("Message lexicon size: %s"%(len(metrics["speaker_action_dist"])))
 
 	## Listener action distribution
 	action_list = []
@@ -112,11 +112,11 @@ def obtain_metrics(training_stats, config_dict):
 			action_list.append(t)
 
 	metrics["listener_action_dist"] = action_distribution(action_list)
-	print("Listener action distribution: %s"%(metrics["listener_action_dist"]))
+	#print("Listener action distribution: %s"%(metrics["listener_action_dist"]))
 
 
 	metrics["reward_dist"] = action_distribution(reward_list)
-	print("reward distribution: %s"%(metrics["reward_dist"]))
+	#print("reward distribution: %s"%(metrics["reward_dist"]))
 
 
 	## Topographic similarity

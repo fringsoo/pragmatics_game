@@ -102,6 +102,7 @@ class PaperListenerNetwork(BaseListenerNetwork):
 				us.append(c_input)
 			
 			U = concatenate(ts) #shape(bs, n_classes)
+			us = concatenate(us)
 			final_output = Lambda(lambda x: K.softmax(x))(U) #shape(bs, n_classes)
 			
 			#final_output = Dense(self.n_classes, activation='softmax', kernel_initializer='identity')(U)
@@ -157,11 +158,12 @@ class PaperListenerNetwork(BaseListenerNetwork):
 		X = self.reshape_message_candidates(speaker_message, candidates)
 		listener_output= self.listener_model.predict_on_batch(X)
 		y, U, z = listener_output[:3]
-		us = listener_output[3:]
+		#us = listener_output[3]
 		listener_probs = y
 		listener_probs = np.squeeze(listener_probs) #shape(n_class)
 		listener_action = np.random.choice(np.arange(self.config['n_classes']), p=listener_probs) #int
-		return listener_action, listener_probs
+		U = np.squeeze(U)
+		return listener_action, listener_probs, U
 
 	def infer_from_listener_policy(self, speaker_message, candidates):
 		"""
@@ -170,11 +172,12 @@ class PaperListenerNetwork(BaseListenerNetwork):
 		X = self.reshape_message_candidates(speaker_message, candidates)
 		listener_output= self.listener_model.predict_on_batch(X)
 		y, U, z = listener_output[:3]
-		us = listener_output[3:]
+		#us = listener_output[3]
 		listener_probs = y
 		listener_probs = np.squeeze(listener_probs) #shape(n_class)
 		listener_action = np.argmax(listener_probs) #int
-		return listener_action, listener_probs
+		U = np.squeeze(U)
+		return listener_action, listener_probs, U
 		
 	def train_listener_policy_on_batch(self):
 		"""
@@ -223,35 +226,37 @@ class PaperListenerNetwork_rnn(PaperListenerNetwork):
 		Batch input and output.
 		"""
 		## Define model
-		t_input = Input(shape=(None, self.config['alphabet_size'],)) #Speakers Message, shape(bs, message_length, alphabet_size)
-		#c_inputs_all = Input(shape=(self.config['n_classes'], self.config['speaker_input_dim'])) #Candidates, shape(bs, n_classes, speaker_input_dim)
-		c_inputs_all = Input(shape=(None, self.config['speaker_input_dim'])) #Candidates, shape(bs, n_classes, speaker_input_dim)
-		inputs = [t_input, c_inputs_all]
-		
-		lstm = LSTM(self.config['listener_dim'], activation='tanh', return_sequences=False, return_state=True)
-		o, sh, sc = lstm(t_input)
-		z = Dense(self.config['listener_dim'], activation='sigmoid')(o) #shape(bs, listener_dim)
-		
-		ts = []
-		us = []
-		u = Dense(self.config['listener_dim'], activation='sigmoid')
-		for _ in range(self.config['n_classes']):
-			#c_input = Input(shape=(self.config['speaker_input_dim'],)) #shape(bs, speaker_input_dim)
-			c_input = Lambda(makeFunc(_))(c_inputs_all)
-			uc = u(c_input)
-			t = Lambda(lambda x: K.expand_dims(K.sum(-K.square(x), axis=1)))(add([z, Lambda(lambda x: -x)(uc)])) #shape(bs, 1)
-			#t = Dot(1, False)([z,uc]) #shape(bs, 1)
-			ts.append(t)
-			us.append(uc)
+		if not os.path.exists(self.modelname):
+			t_input = Input(shape=(None, self.config['alphabet_size'],)) #Speakers Message, shape(bs, message_length, alphabet_size)
+			#c_inputs_all = Input(shape=(self.config['n_classes'], self.config['speaker_input_dim'])) #Candidates, shape(bs, n_classes, speaker_input_dim)
+			c_inputs_all = Input(shape=(None, self.config['speaker_input_dim'])) #Candidates, shape(bs, n_classes, speaker_input_dim)
+			inputs = [t_input, c_inputs_all]
 			
-		U = concatenate(ts) #shape(bs, n_classes)
-		final_output = Lambda(lambda x: K.softmax(x))(U) #shape(bs, n_classes)
-		
-		self.listener_model = Model(inputs=inputs, outputs=[final_output, U, z] + us)
-		#self.listener_model.compile(loss="categorical_crossentropy", optimizer=RMSprop(lr=self.config['listener_lr']))
-
-		if os.path.exists(self.modelname):
-			self.load_weights()
+			lstm = LSTM(self.config['listener_dim'], activation='tanh', return_sequences=False, return_state=True)
+			o, sh, sc = lstm(t_input)
+			z = Dense(self.config['listener_dim'], activation='sigmoid')(o) #shape(bs, listener_dim)
+			
+			ts = []
+			us = []
+			u = Dense(self.config['listener_dim'], activation='sigmoid')
+			for _ in range(self.config['n_classes']):
+				#c_input = Input(shape=(self.config['speaker_input_dim'],)) #shape(bs, speaker_input_dim)
+				c_input = Lambda(makeFunc(_))(c_inputs_all)
+				uc = u(c_input)
+				t = Lambda(lambda x: K.expand_dims(K.sum(-K.square(x), axis=1)))(add([z, Lambda(lambda x: -x)(uc)])) #shape(bs, 1)
+				#t = Dot(1, False)([z,uc]) #shape(bs, 1)
+				ts.append(t)
+				us.append(uc)
+				
+			U = concatenate(ts) #shape(bs, n_classes)
+			us = concatenate(us)
+			final_output = Lambda(lambda x: K.softmax(x))(U)
+			 #shape(bs, n_classes)
+			
+			self.listener_model = Model(inputs=inputs, outputs=[final_output, U, z, us])
+			#self.listener_model.compile(loss="categorical_crossentropy", optimizer=RMSprop(lr=self.config['listener_lr']))
+		else:
+			self.load()
 			#check!!!
 
 	def set_updates(self):
@@ -335,15 +340,16 @@ class PaperListenerNetwork_rnn_conv(PaperListenerNetwork_rnn):
 				conv_outputs = self.conv_model(c_input)
 				
 				uc = u(conv_outputs)
-				#t = Lambda(lambda x: K.expand_dims(K.sum(-K.square(x),axis=1)))(add([z, Lambda(lambda x: -x)(uc)])) #shape(bs, 1)
-				t = Dot(1, False)([z,uc]) #shape(bs, 1)
+				t = Lambda(lambda x: K.expand_dims(K.sum(-K.square(x),axis=1)))(add([z, Lambda(lambda x: -x)(uc)])) #shape(bs, 1)
+				#t = Dot(1, False)([z,uc]) #shape(bs, 1)
 				ts.append(t)
 				us.append(uc)
 			
 			U = concatenate(ts) #shape(bs, n_classes)
+			us = concatenate(us)
 			final_output = Lambda(lambda x: K.softmax(x))(U) #shape(bs, n_classes)
 			
-			self.listener_model = Model(inputs=inputs, outputs=[final_output, U, z])
+			self.listener_model = Model(inputs=inputs, outputs=[final_output, U, z, us])
 			#self.listener_model.compile(loss="categorical_crossentropy", optimizer=RMSprop(lr=self.config['listener_lr']))
 
 		else:
@@ -389,62 +395,6 @@ class PaperListenerNetwork_rnn_conv(PaperListenerNetwork_rnn):
 		X = [speaker_message, np.expand_dims(candidates, axis=0)]
 		return X
 
-	def print_to_csv_torm(self, speaker_message, candidates):
-		ucs = self.get_internal_model(speaker_message, candidates)
-		data = pandas.DataFrame(ucs[0])
-		data.to_csv('torm.csv', mode='a')
-		data = pandas.DataFrame(ucs[1])
-		data.to_csv('torm.csv', mode='a',header=False)
-		data = pandas.DataFrame(ucs[2])
-		data.to_csv('torm.csv', mode='a',header=False)
-		data = pandas.DataFrame(ucs[3])
-		data.to_csv('torm.csv', mode='a',header=False)
-
-	def train_internal_mode_torm(self, data_generator, conv_pretrain_type, fix_convmodel, trainround):
-		if conv_pretrain_type=='shape':
-			conv_pretrain_clsnum = 5
-		elif conv_pretrain_type=='color':
-			conv_pretrain_clsnum = 8
-		else:
-			assert False
-		
-		conv_branch_model=Sequential()
-		conv_branch_model.add(self.internal_model)
-		conv_branch_model.add(Dense(conv_pretrain_clsnum, activation='softmax'))
-		conv_branch_model.compile(loss='categorical_crossentropy',optimizer=SGD(lr=0.0001, momentum=0.9, decay=1e-6, nesterov=True),metrics=['accuracy'])
-		
-		if fix_convmodel:
-			conv_branch_model.layers[0].trainable = False
-		
-		right_train = 0
-		right_test = 0
-		while (right_train<2900 or right_test<940):
-			right_train = 0
-			right_test = 0
-			pbar = ProgressBar()
-			for _n in pbar(range(trainround)):
-				batch = data_generator.training_batch_generator(pretrain_idx_type=conv_pretrain_type)
-				for b in batch:
-					target_input, candidates, target_candidate_idx, sampled_target_idx, candidate_idx_set = b
-					X = np.expand_dims(candidates, axis=0)
-					y = np.array([np.eye(conv_pretrain_clsnum)[candidate_idx_set[0]]])
-					
-					conv_branch_model.fit(X, y, verbose=0, epochs=1, batch_size=1)	
-			for train_example in data_generator.training_set_evaluation_generator(pretrain_idx_type=conv_pretrain_type):
-				target_input, candidates, target_candidate_idx, sampled_target_idx, candidate_idx_set = train_example
-				ans = conv_branch_model.predict(np.expand_dims(candidates, axis=0)).argmax()
-				
-				if ans == candidate_idx_set[0]:
-					right_train+=1
-			for train_example in data_generator.testing_set_generator(pretrain_idx_type=conv_pretrain_type):
-				target_input, candidates, target_candidate_idx, sampled_target_idx, candidate_idx_set = train_example
-				ans = conv_branch_model.predict(np.expand_dims(candidates, axis=0)).argmax()
-				if ans == candidate_idx_set[0]:
-					right_test+=1
-			print(right_train, right_test)
-
-			
-		conv_branch_model.layers[0].trainable = True
 
 '''
 class PaperListenerNetwork_rnn_conv_color(PaperListenerNetwork_rnn):

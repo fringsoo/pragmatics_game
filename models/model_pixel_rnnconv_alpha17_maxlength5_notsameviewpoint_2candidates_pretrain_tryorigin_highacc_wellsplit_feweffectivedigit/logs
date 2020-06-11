@@ -1,0 +1,1079 @@
+Evaluation Accuracy: 51.03333333333333 %
+Message lexicon size: 647 
+Listener action distribution: Counter({0: 1530, 1: 1470}) 
+reward distribution: Counter({1: 1531, 0: 1469}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 59.0 %
+Message lexicon size: 7 
+Listener action distribution: Counter({1: 1506, 0: 1494}) 
+reward distribution: Counter({1: 1770, 0: 1230}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 72.63333333333334 %
+Message lexicon size: 22 
+Listener action distribution: Counter({0: 1517, 1: 1483}) 
+reward distribution: Counter({1: 2179, 0: 821}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 70.8 %
+Message lexicon size: 17 
+Listener action distribution: Counter({0: 1560, 1: 1440}) 
+reward distribution: Counter({1: 2124, 0: 876}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 72.43333333333334 %
+Message lexicon size: 21 
+Listener action distribution: Counter({0: 1519, 1: 1481}) 
+reward distribution: Counter({1: 2173, 0: 827}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 73.83333333333333 %
+Message lexicon size: 20 
+Listener action distribution: Counter({0: 1534, 1: 1466}) 
+reward distribution: Counter({1: 2215, 0: 785}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 73.56666666666666 %
+Message lexicon size: 48 
+Listener action distribution: Counter({0: 1534, 1: 1466}) 
+reward distribution: Counter({1: 2207, 0: 793}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 73.3 %
+Message lexicon size: 42 
+Listener action distribution: Counter({1: 1508, 0: 1492}) 
+reward distribution: Counter({1: 2199, 0: 801}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 72.53333333333333 %
+Message lexicon size: 20 
+Listener action distribution: Counter({0: 1541, 1: 1459}) 
+reward distribution: Counter({1: 2176, 0: 824}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 73.23333333333333 %
+Message lexicon size: 15 
+Listener action distribution: Counter({0: 1503, 1: 1497}) 
+reward distribution: Counter({1: 2197, 0: 803}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 72.83333333333333 %
+Message lexicon size: 30 
+Listener action distribution: Counter({1: 1517, 0: 1483}) 
+reward distribution: Counter({1: 2185, 0: 815}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 71.2 %
+Message lexicon size: 33 
+Listener action distribution: Counter({1: 1519, 0: 1481}) 
+reward distribution: Counter({1: 2136, 0: 864}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 74.03333333333333 %
+Message lexicon size: 16 
+Listener action distribution: Counter({1: 1509, 0: 1491}) 
+reward distribution: Counter({1: 2221, 0: 779}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 72.23333333333333 %
+Message lexicon size: 7 
+Listener action distribution: Counter({1: 1550, 0: 1450}) 
+reward distribution: Counter({1: 2167, 0: 833}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 74.5 %
+Message lexicon size: 8 
+Listener action distribution: Counter({0: 1520, 1: 1480}) 
+reward distribution: Counter({1: 2235, 0: 765}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 73.56666666666666 %
+Message lexicon size: 8 
+Listener action distribution: Counter({1: 1510, 0: 1490}) 
+reward distribution: Counter({1: 2207, 0: 793}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 73.16666666666667 %
+Message lexicon size: 11 
+Listener action distribution: Counter({1: 1504, 0: 1496}) 
+reward distribution: Counter({1: 2195, 0: 805}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 76.06666666666666 %
+Message lexicon size: 136 
+Listener action distribution: Counter({0: 1554, 1: 1446}) 
+reward distribution: Counter({1: 2282, 0: 718}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 74.03333333333333 %
+Message lexicon size: 14 
+Listener action distribution: Counter({1: 1507, 0: 1493}) 
+reward distribution: Counter({1: 2221, 0: 779}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 73.76666666666667 %
+Message lexicon size: 41 
+Listener action distribution: Counter({0: 1530, 1: 1470}) 
+reward distribution: Counter({1: 2213, 0: 787}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 75.33333333333333 %
+Message lexicon size: 80 
+Listener action distribution: Counter({1: 1503, 0: 1497}) 
+reward distribution: Counter({1: 2260, 0: 740}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 74.46666666666667 %
+Message lexicon size: 28 
+Listener action distribution: Counter({1: 1510, 0: 1490}) 
+reward distribution: Counter({1: 2234, 0: 766}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 74.8 %
+Message lexicon size: 61 
+Listener action distribution: Counter({0: 1541, 1: 1459}) 
+reward distribution: Counter({1: 2244, 0: 756}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 75.9 %
+Message lexicon size: 113 
+Listener action distribution: Counter({0: 1501, 1: 1499}) 
+reward distribution: Counter({1: 2277, 0: 723}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 76.33333333333333 %
+Message lexicon size: 60 
+Listener action distribution: Counter({1: 1514, 0: 1486}) 
+reward distribution: Counter({1: 2290, 0: 710}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 75.66666666666667 %
+Message lexicon size: 25 
+Listener action distribution: Counter({1: 1515, 0: 1485}) 
+reward distribution: Counter({1: 2270, 0: 730}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 75.86666666666666 %
+Message lexicon size: 36 
+Listener action distribution: Counter({1: 1508, 0: 1492}) 
+reward distribution: Counter({1: 2276, 0: 724}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 77.43333333333334 %
+Message lexicon size: 46 
+Listener action distribution: Counter({0: 1544, 1: 1456}) 
+reward distribution: Counter({1: 2323, 0: 677}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 78.66666666666667 %
+Message lexicon size: 16 
+Listener action distribution: Counter({1: 1517, 0: 1483}) 
+reward distribution: Counter({1: 2360, 0: 640}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 70.7 %
+Message lexicon size: 62 
+Listener action distribution: Counter({0: 1515, 1: 1485}) 
+reward distribution: Counter({1: 2121, 0: 879}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 74.56666666666666 %
+Message lexicon size: 118 
+Listener action distribution: Counter({1: 1534, 0: 1466}) 
+reward distribution: Counter({1: 2237, 0: 763}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 78.63333333333334 %
+Message lexicon size: 121 
+Listener action distribution: Counter({0: 1524, 1: 1476}) 
+reward distribution: Counter({1: 2359, 0: 641}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 79.16666666666667 %
+Message lexicon size: 50 
+Listener action distribution: Counter({1: 1517, 0: 1483}) 
+reward distribution: Counter({1: 2375, 0: 625}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 79.36666666666666 %
+Message lexicon size: 47 
+Listener action distribution: Counter({0: 1558, 1: 1442}) 
+reward distribution: Counter({1: 2381, 0: 619}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 80.36666666666666 %
+Message lexicon size: 94 
+Listener action distribution: Counter({1: 1554, 0: 1446}) 
+reward distribution: Counter({1: 2411, 0: 589}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 80.03333333333333 %
+Message lexicon size: 57 
+Listener action distribution: Counter({1: 1514, 0: 1486}) 
+reward distribution: Counter({1: 2401, 0: 599}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 79.53333333333333 %
+Message lexicon size: 68 
+Listener action distribution: Counter({1: 1503, 0: 1497}) 
+reward distribution: Counter({1: 2386, 0: 614}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 79.16666666666667 %
+Message lexicon size: 56 
+Listener action distribution: Counter({1: 1523, 0: 1477}) 
+reward distribution: Counter({1: 2375, 0: 625}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 79.96666666666667 %
+Message lexicon size: 32 
+Listener action distribution: Counter({0: 1516, 1: 1484}) 
+reward distribution: Counter({1: 2399, 0: 601}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 80.36666666666666 %
+Message lexicon size: 32 
+Listener action distribution: Counter({1: 1543, 0: 1457}) 
+reward distribution: Counter({1: 2411, 0: 589}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 81.1 %
+Message lexicon size: 57 
+Listener action distribution: Counter({1: 1536, 0: 1464}) 
+reward distribution: Counter({1: 2433, 0: 567}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 80.6 %
+Message lexicon size: 79 
+Listener action distribution: Counter({1: 1522, 0: 1478}) 
+reward distribution: Counter({1: 2418, 0: 582}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 80.86666666666666 %
+Message lexicon size: 37 
+Listener action distribution: Counter({0: 1504, 1: 1496}) 
+reward distribution: Counter({1: 2426, 0: 574}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 79.66666666666667 %
+Message lexicon size: 22 
+Listener action distribution: Counter({0: 1501, 1: 1499}) 
+reward distribution: Counter({1: 2390, 0: 610}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 81.66666666666667 %
+Message lexicon size: 49 
+Listener action distribution: Counter({0: 1534, 1: 1466}) 
+reward distribution: Counter({1: 2450, 0: 550}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 81.93333333333334 %
+Message lexicon size: 21 
+Listener action distribution: Counter({1: 1520, 0: 1480}) 
+reward distribution: Counter({1: 2458, 0: 542}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 80.63333333333334 %
+Message lexicon size: 50 
+Listener action distribution: Counter({0: 1536, 1: 1464}) 
+reward distribution: Counter({1: 2419, 0: 581}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 80.2 %
+Message lexicon size: 106 
+Listener action distribution: Counter({1: 1535, 0: 1465}) 
+reward distribution: Counter({1: 2406, 0: 594}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 81.2 %
+Message lexicon size: 26 
+Listener action distribution: Counter({0: 1513, 1: 1487}) 
+reward distribution: Counter({1: 2436, 0: 564}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 82.93333333333334 %
+Message lexicon size: 50 
+Listener action distribution: Counter({1: 1504, 0: 1496}) 
+reward distribution: Counter({1: 2488, 0: 512}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 81.86666666666666 %
+Message lexicon size: 47 
+Listener action distribution: Counter({0: 1507, 1: 1493}) 
+reward distribution: Counter({1: 2456, 0: 544}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 81.23333333333333 %
+Message lexicon size: 58 
+Listener action distribution: Counter({0: 1500, 1: 1500}) 
+reward distribution: Counter({1: 2437, 0: 563}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 81.56666666666666 %
+Message lexicon size: 45 
+Listener action distribution: Counter({0: 1518, 1: 1482}) 
+reward distribution: Counter({1: 2447, 0: 553}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 82.53333333333333 %
+Message lexicon size: 60 
+Listener action distribution: Counter({1: 1579, 0: 1421}) 
+reward distribution: Counter({1: 2476, 0: 524}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 82.2 %
+Message lexicon size: 51 
+Listener action distribution: Counter({0: 1509, 1: 1491}) 
+reward distribution: Counter({1: 2466, 0: 534}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 80.56666666666666 %
+Message lexicon size: 31 
+Listener action distribution: Counter({1: 1551, 0: 1449}) 
+reward distribution: Counter({1: 2417, 0: 583}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 81.43333333333334 %
+Message lexicon size: 90 
+Listener action distribution: Counter({1: 1524, 0: 1476}) 
+reward distribution: Counter({1: 2443, 0: 557}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 80.73333333333333 %
+Message lexicon size: 45 
+Listener action distribution: Counter({0: 1506, 1: 1494}) 
+reward distribution: Counter({1: 2422, 0: 578}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 79.56666666666666 %
+Message lexicon size: 76 
+Listener action distribution: Counter({1: 1542, 0: 1458}) 
+reward distribution: Counter({1: 2387, 0: 613}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 81.13333333333334 %
+Message lexicon size: 109 
+Listener action distribution: Counter({0: 1523, 1: 1477}) 
+reward distribution: Counter({1: 2434, 0: 566}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 81.83333333333333 %
+Message lexicon size: 134 
+Listener action distribution: Counter({0: 1503, 1: 1497}) 
+reward distribution: Counter({1: 2455, 0: 545}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 82.0 %
+Message lexicon size: 39 
+Listener action distribution: Counter({0: 1551, 1: 1449}) 
+reward distribution: Counter({1: 2460, 0: 540}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 82.76666666666667 %
+Message lexicon size: 49 
+Listener action distribution: Counter({1: 1551, 0: 1449}) 
+reward distribution: Counter({1: 2483, 0: 517}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 81.03333333333333 %
+Message lexicon size: 65 
+Listener action distribution: Counter({0: 1533, 1: 1467}) 
+reward distribution: Counter({1: 2431, 0: 569}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 81.9 %
+Message lexicon size: 82 
+Listener action distribution: Counter({0: 1515, 1: 1485}) 
+reward distribution: Counter({1: 2457, 0: 543}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 82.1 %
+Message lexicon size: 51 
+Listener action distribution: Counter({0: 1506, 1: 1494}) 
+reward distribution: Counter({1: 2463, 0: 537}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 80.7 %
+Message lexicon size: 61 
+Listener action distribution: Counter({0: 1502, 1: 1498}) 
+reward distribution: Counter({1: 2421, 0: 579}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 80.5 %
+Message lexicon size: 44 
+Listener action distribution: Counter({1: 1517, 0: 1483}) 
+reward distribution: Counter({1: 2415, 0: 585}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 81.03333333333333 %
+Message lexicon size: 55 
+Listener action distribution: Counter({1: 1517, 0: 1483}) 
+reward distribution: Counter({1: 2431, 0: 569}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 68.9 %
+Message lexicon size: 50 
+Listener action distribution: Counter({0: 1532, 1: 1468}) 
+reward distribution: Counter({1: 2067, 0: 933}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 82.26666666666667 %
+Message lexicon size: 31 
+Listener action distribution: Counter({1: 1529, 0: 1471}) 
+reward distribution: Counter({1: 2468, 0: 532}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 81.83333333333333 %
+Message lexicon size: 91 
+Listener action distribution: Counter({0: 1513, 1: 1487}) 
+reward distribution: Counter({1: 2455, 0: 545}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 80.93333333333334 %
+Message lexicon size: 81 
+Listener action distribution: Counter({0: 1552, 1: 1448}) 
+reward distribution: Counter({1: 2428, 0: 572}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 81.36666666666666 %
+Message lexicon size: 107 
+Listener action distribution: Counter({0: 1504, 1: 1496}) 
+reward distribution: Counter({1: 2441, 0: 559}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 81.9 %
+Message lexicon size: 68 
+Listener action distribution: Counter({0: 1540, 1: 1460}) 
+reward distribution: Counter({1: 2457, 0: 543}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 81.9 %
+Message lexicon size: 72 
+Listener action distribution: Counter({1: 1563, 0: 1437}) 
+reward distribution: Counter({1: 2457, 0: 543}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 80.53333333333333 %
+Message lexicon size: 79 
+Listener action distribution: Counter({0: 1529, 1: 1471}) 
+reward distribution: Counter({1: 2416, 0: 584}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 77.63333333333334 %
+Message lexicon size: 79 
+Listener action distribution: Counter({0: 1519, 1: 1481}) 
+reward distribution: Counter({1: 2329, 0: 671}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 76.73333333333333 %
+Message lexicon size: 50 
+Listener action distribution: Counter({1: 1531, 0: 1469}) 
+reward distribution: Counter({1: 2302, 0: 698}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 81.03333333333333 %
+Message lexicon size: 53 
+Listener action distribution: Counter({1: 1505, 0: 1495}) 
+reward distribution: Counter({1: 2431, 0: 569}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 78.33333333333333 %
+Message lexicon size: 66 
+Listener action distribution: Counter({1: 1512, 0: 1488}) 
+reward distribution: Counter({1: 2350, 0: 650}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 78.8 %
+Message lexicon size: 104 
+Listener action distribution: Counter({1: 1513, 0: 1487}) 
+reward distribution: Counter({1: 2364, 0: 636}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 79.53333333333333 %
+Message lexicon size: 64 
+Listener action distribution: Counter({0: 1555, 1: 1445}) 
+reward distribution: Counter({1: 2386, 0: 614}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 79.4 %
+Message lexicon size: 53 
+Listener action distribution: Counter({1: 1515, 0: 1485}) 
+reward distribution: Counter({1: 2382, 0: 618}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 81.0 %
+Message lexicon size: 59 
+Listener action distribution: Counter({1: 1516, 0: 1484}) 
+reward distribution: Counter({1: 2430, 0: 570}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 79.46666666666667 %
+Message lexicon size: 50 
+Listener action distribution: Counter({0: 1539, 1: 1461}) 
+reward distribution: Counter({1: 2384, 0: 616}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 79.53333333333333 %
+Message lexicon size: 35 
+Listener action distribution: Counter({0: 1539, 1: 1461}) 
+reward distribution: Counter({1: 2386, 0: 614}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 80.06666666666666 %
+Message lexicon size: 45 
+Listener action distribution: Counter({1: 1527, 0: 1473}) 
+reward distribution: Counter({1: 2402, 0: 598}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 80.16666666666667 %
+Message lexicon size: 70 
+Listener action distribution: Counter({1: 1524, 0: 1476}) 
+reward distribution: Counter({1: 2405, 0: 595}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 81.53333333333333 %
+Message lexicon size: 29 
+Listener action distribution: Counter({1: 1529, 0: 1471}) 
+reward distribution: Counter({1: 2446, 0: 554}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 80.0 %
+Message lexicon size: 23 
+Listener action distribution: Counter({0: 1502, 1: 1498}) 
+reward distribution: Counter({1: 2400, 0: 600}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 81.46666666666667 %
+Message lexicon size: 32 
+Listener action distribution: Counter({1: 1506, 0: 1494}) 
+reward distribution: Counter({1: 2444, 0: 556}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 82.53333333333333 %
+Message lexicon size: 59 
+Listener action distribution: Counter({1: 1502, 0: 1498}) 
+reward distribution: Counter({1: 2476, 0: 524}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 81.06666666666666 %
+Message lexicon size: 51 
+Listener action distribution: Counter({0: 1513, 1: 1487}) 
+reward distribution: Counter({1: 2432, 0: 568}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 81.56666666666666 %
+Message lexicon size: 45 
+Listener action distribution: Counter({1: 1512, 0: 1488}) 
+reward distribution: Counter({1: 2447, 0: 553}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 80.8 %
+Message lexicon size: 49 
+Listener action distribution: Counter({0: 1513, 1: 1487}) 
+reward distribution: Counter({1: 2424, 0: 576}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 82.43333333333334 %
+Message lexicon size: 34 
+Listener action distribution: Counter({0: 1506, 1: 1494}) 
+reward distribution: Counter({1: 2473, 0: 527}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 81.83333333333333 %
+Message lexicon size: 32 
+Listener action distribution: Counter({1: 1531, 0: 1469}) 
+reward distribution: Counter({1: 2455, 0: 545}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 80.86666666666666 %
+Message lexicon size: 31 
+Listener action distribution: Counter({0: 1502, 1: 1498}) 
+reward distribution: Counter({1: 2426, 0: 574}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 80.43333333333334 %
+Message lexicon size: 43 
+Listener action distribution: Counter({0: 1528, 1: 1472}) 
+reward distribution: Counter({1: 2413, 0: 587}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 82.06666666666666 %
+Message lexicon size: 20 
+Listener action distribution: Counter({1: 1523, 0: 1477}) 
+reward distribution: Counter({1: 2462, 0: 538}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 82.4 %
+Message lexicon size: 30 
+Listener action distribution: Counter({0: 1577, 1: 1423}) 
+reward distribution: Counter({1: 2472, 0: 528}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 81.93333333333334 %
+Message lexicon size: 32 
+Listener action distribution: Counter({0: 1525, 1: 1475}) 
+reward distribution: Counter({1: 2458, 0: 542}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 81.2 %
+Message lexicon size: 60 
+Listener action distribution: Counter({0: 1512, 1: 1488}) 
+reward distribution: Counter({1: 2436, 0: 564}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 81.5 %
+Message lexicon size: 46 
+Listener action distribution: Counter({0: 1522, 1: 1478}) 
+reward distribution: Counter({1: 2445, 0: 555}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 81.83333333333333 %
+Message lexicon size: 46 
+Listener action distribution: Counter({1: 1512, 0: 1488}) 
+reward distribution: Counter({1: 2455, 0: 545}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 80.7 %
+Message lexicon size: 20 
+Listener action distribution: Counter({0: 1507, 1: 1493}) 
+reward distribution: Counter({1: 2421, 0: 579}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 83.16666666666667 %
+Message lexicon size: 18 
+Listener action distribution: Counter({1: 1516, 0: 1484}) 
+reward distribution: Counter({1: 2495, 0: 505}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 81.0 %
+Message lexicon size: 39 
+Listener action distribution: Counter({0: 1522, 1: 1478}) 
+reward distribution: Counter({1: 2430, 0: 570}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 81.33333333333333 %
+Message lexicon size: 40 
+Listener action distribution: Counter({0: 1534, 1: 1466}) 
+reward distribution: Counter({1: 2440, 0: 560}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 84.66666666666667 %
+Message lexicon size: 61 
+Listener action distribution: Counter({0: 1530, 1: 1470}) 
+reward distribution: Counter({1: 2540, 0: 460}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 80.63333333333334 %
+Message lexicon size: 63 
+Listener action distribution: Counter({1: 1558, 0: 1442}) 
+reward distribution: Counter({1: 2419, 0: 581}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 81.4 %
+Message lexicon size: 42 
+Listener action distribution: Counter({1: 1501, 0: 1499}) 
+reward distribution: Counter({1: 2442, 0: 558}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 84.93333333333334 %
+Message lexicon size: 64 
+Listener action distribution: Counter({0: 1506, 1: 1494}) 
+reward distribution: Counter({1: 2548, 0: 452}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 85.0 %
+Message lexicon size: 25 
+Listener action distribution: Counter({0: 1516, 1: 1484}) 
+reward distribution: Counter({1: 2550, 0: 450}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 89.06666666666666 %
+Message lexicon size: 34 
+Listener action distribution: Counter({0: 1520, 1: 1480}) 
+reward distribution: Counter({1: 2672, 0: 328}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 90.06666666666666 %
+Message lexicon size: 41 
+Listener action distribution: Counter({1: 1524, 0: 1476}) 
+reward distribution: Counter({1: 2702, 0: 298}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 90.43333333333334 %
+Message lexicon size: 36 
+Listener action distribution: Counter({1: 1514, 0: 1486}) 
+reward distribution: Counter({1: 2713, 0: 287}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 88.06666666666666 %
+Message lexicon size: 19 
+Listener action distribution: Counter({0: 1541, 1: 1459}) 
+reward distribution: Counter({1: 2642, 0: 358}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 88.03333333333333 %
+Message lexicon size: 32 
+Listener action distribution: Counter({1: 1508, 0: 1492}) 
+reward distribution: Counter({1: 2641, 0: 359}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 90.2 %
+Message lexicon size: 31 
+Listener action distribution: Counter({0: 1525, 1: 1475}) 
+reward distribution: Counter({1: 2706, 0: 294}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 84.93333333333334 %
+Message lexicon size: 25 
+Listener action distribution: Counter({0: 1539, 1: 1461}) 
+reward distribution: Counter({1: 2548, 0: 452}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 87.7 %
+Message lexicon size: 40 
+Listener action distribution: Counter({0: 1508, 1: 1492}) 
+reward distribution: Counter({1: 2631, 0: 369}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 86.36666666666666 %
+Message lexicon size: 34 
+Listener action distribution: Counter({0: 1534, 1: 1466}) 
+reward distribution: Counter({1: 2591, 0: 409}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 84.26666666666667 %
+Message lexicon size: 38 
+Listener action distribution: Counter({1: 1511, 0: 1489}) 
+reward distribution: Counter({1: 2528, 0: 472}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 88.8 %
+Message lexicon size: 20 
+Listener action distribution: Counter({1: 1504, 0: 1496}) 
+reward distribution: Counter({1: 2664, 0: 336}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 89.8 %
+Message lexicon size: 25 
+Listener action distribution: Counter({0: 1522, 1: 1478}) 
+reward distribution: Counter({1: 2694, 0: 306}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Evaluation Accuracy: 90.3 %
+Message lexicon size: 30 
+Listener action distribution: Counter({0: 1536, 1: 1464}) 
+reward distribution: Counter({1: 2709, 0: 291}) 
+###############
+Training
+{"conv_type": "common", "batch_size": 1, "sample_round_explicit": 1, "speaker_input_h": 124, "n_batches": 2000000, "n_testing_instances": 1000, "alphabet_size": 17, "speaker_input_w": 124, "max_short_game_round": 1000, "direct": false, "n_classes": 2, "noise": 0.0, "listener_dim": 50, "speaker_dim": 50, "n_training_instances": 3000, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "pixel": true, "n_distractors": 1, "max_message_length": 5, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"]}
+###############
+Test Accuracy: 89.9 %
+Message lexicon size: 26 
+Listener action distribution: Counter({0: 501, 1: 499}) 
+reward distribution: Counter({1: 899, 0: 101}) 
+###############
+Test Accuracy: 88.0 %
+Message lexicon size: 26 
+Listener action distribution: Counter({1: 513, 0: 487}) 
+reward distribution: Counter({1: 880, 0: 120}) 
+###############
+Evaluation Accuracy: 89.93333333333334 %
+Message lexicon size: 30 
+Listener action distribution: Counter({0: 1508, 1: 1492}) 
+reward distribution: Counter({1: 2698, 0: 302}) 
+###############
+Training
+{"alphabet_size": 17, "batch_size": 1, "n_testing_instances": 1000, "n_training_instances": 3000, "conv_type": "common", "n_distractors": 1, "speaker_input_h": 124, "max_message_length": 5, "listener_dim": 50, "speaker_dim": 50, "n_classes": 2, "sample_round_explicit": 1, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"], "speaker_input_w": 124, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "direct": false, "n_batches": 2000000, "pixel": true, "max_short_game_round": 1000, "noise": 0.0}
+###############
+Evaluation Accuracy: 89.9 %
+Message lexicon size: 28 
+Listener action distribution: Counter({1: 1541, 0: 1459}) 
+reward distribution: Counter({1: 2697, 0: 303}) 
+###############
+Training
+{"direct": false, "noise": 0.0, "speaker_dim": 50, "n_training_instances": 3000, "max_short_game_round": 1000, "sample_round_explicit": 1, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"], "batch_size": 1, "conv_type": "common", "n_batches": 2000000, "alphabet_size": 17, "speaker_input_h": 124, "speaker_input_w": 124, "listener_dim": 50, "n_testing_instances": 1000, "pixel": true, "max_message_length": 5, "n_distractors": 1, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "n_classes": 2}
+###############
+Evaluation Accuracy: 90.73333333333333 %
+Message lexicon size: 33 
+Listener action distribution: Counter({0: 1516, 1: 1484}) 
+reward distribution: Counter({1: 2722, 0: 278}) 
+###############
+Training
+{"direct": false, "noise": 0.0, "speaker_dim": 50, "n_training_instances": 3000, "max_short_game_round": 1000, "sample_round_explicit": 1, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"], "batch_size": 1, "conv_type": "common", "n_batches": 2000000, "alphabet_size": 17, "speaker_input_h": 124, "speaker_input_w": 124, "listener_dim": 50, "n_testing_instances": 1000, "pixel": true, "max_message_length": 5, "n_distractors": 1, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "n_classes": 2}
+###############
+Evaluation Accuracy: 88.06666666666666 %
+Message lexicon size: 20 
+Listener action distribution: Counter({1: 1517, 0: 1483}) 
+reward distribution: Counter({1: 2642, 0: 358}) 
+###############
+Training
+{"direct": false, "noise": 0.0, "speaker_dim": 50, "n_training_instances": 3000, "max_short_game_round": 1000, "sample_round_explicit": 1, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"], "batch_size": 1, "conv_type": "common", "n_batches": 2000000, "alphabet_size": 17, "speaker_input_h": 124, "speaker_input_w": 124, "listener_dim": 50, "n_testing_instances": 1000, "pixel": true, "max_message_length": 5, "n_distractors": 1, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "n_classes": 2}
+###############
+Evaluation Accuracy: 89.96666666666667 %
+Message lexicon size: 15 
+Listener action distribution: Counter({0: 1519, 1: 1481}) 
+reward distribution: Counter({1: 2699, 0: 301}) 
+###############
+Training
+{"direct": false, "noise": 0.0, "speaker_dim": 50, "n_training_instances": 3000, "max_short_game_round": 1000, "sample_round_explicit": 1, "alphabet": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q"], "batch_size": 1, "conv_type": "common", "n_batches": 2000000, "alphabet_size": 17, "speaker_input_h": 124, "speaker_input_w": 124, "listener_dim": 50, "n_testing_instances": 1000, "pixel": true, "max_message_length": 5, "n_distractors": 1, "modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin", "n_classes": 2}
+###############
+Test Accuracy: 90.6 %
+Message lexicon size: 13 
+Listener action distribution: Counter({1: 505, 0: 495}) 
+reward distribution: Counter({1: 906, 0: 94}) 
+###############

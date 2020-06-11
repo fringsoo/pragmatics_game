@@ -125,29 +125,36 @@ class PaperSpeakerNetwork(BaseSpeakerNetwork):
 		assert len(target_input.shape)==1 and target_input.shape[0]==self.config['speaker_input_dim']
 		return np.expand_dims(target_input, axis=0)
 
-	def sample_from_speaker_policy(self, target_input):
-		"""
-		Input and output are all just one instance. No bs dimensize.
-		"""
+	def network_output(self, target_input):
 		target_input = self.reshape_target(target_input) #shape(1, speaker_input_dim)
 		outputs = self.speaker_model.predict(target_input) #shape(1, max_message_length, 2)
 		action_prob = np.squeeze(outputs) #shape(max_message_length, 2)
+		return action_prob
+	
+	def sample_message_from_prob(self, action_prob):
 		action = []
 		for _ in action_prob:
 			action.append(np.random.choice(np.arange(self.config['alphabet_size']), p=_))
 		action = np.array(action) #shape(max_message_length)
 		return action, action_prob
 
+	def infer_message_from_prob(self, action_prob):
+		action = np.argmax(action_prob, axis=1) #shape(max_message_length)
+		return action, action_prob
+
+	def sample_from_speaker_policy(self, target_input):
+		"""
+		Input and output are all just one instance. No bs dimensize.
+		"""
+		action_prob = self.network_output(target_input)
+		return self.sample_message_from_prob(action_prob)
+
 	def infer_from_speaker_policy(self, target_input):
 		"""
 		Input and output are all just one instance. No bs dimensize.
 		"""
-		
-		target_input = self.reshape_target(target_input) #shape(1, speaker_input_dim)
-		outputs = self.speaker_model.predict(target_input) #shape(1, max_message_length, 2)
-		action_prob = np.squeeze(outputs) #shape(max_message_length, 2)
-		action = np.argmax(action_prob, axis=1) #shape(max_message_length)
-		return action, action_prob
+		action_prob = self.network_output(target_input)
+		return self.infer_message_from_prob(action_prob)	
 
 	def train_speaker_policy_on_batch(self):
 		"""

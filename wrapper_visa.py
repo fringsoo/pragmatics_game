@@ -37,7 +37,7 @@ class VisaDatasetWrapper(object):
 	"""
 	def __init__(self):
 		self.evaltestrepeat = 10
-		self.dataset_dir = os.path.join(os.path.dirname(__file__), "visa_dataset", "US")
+		self.dataset_dir = os.path.join(os.path.dirname(__file__), "datadir", "visa_dataset", "US")
 		self.file_extension = ".xml"
 		self.attribute_list = []
 		self.concept_list = []
@@ -192,8 +192,6 @@ class VisaDatasetWrapper(object):
 		self.n_training_instances = self.n_training_rows * self.evaltestrepeat
 		self.n_testing_instances = self.n_testing_rows * self.evaltestrepeat
 
-		import pdb
-		pdb.set_trace()
 
 		self.concept_dict_train = {}
 		self.concept_dict_test = {}

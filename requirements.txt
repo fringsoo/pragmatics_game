@@ -15,7 +15,8 @@ Keras==2.1.6
 Markdown==2.6.11
 matplotlib
 #Meshpy
-numpy==1.14.3
+numpy
+#==1.14.3
 pandas
 parso==0.2.1
 pexpect==4.6.0

@@ -29,11 +29,11 @@ class BulletWrapper():
 
     def reset(self, rgba, shapeno, floorcolor, pos, ori, shapescale=2, fixed_size=True):
         pb.resetSimulation()
-        #pb.loadURDF('assets/plane.urdf')
+        #pb.loadURDF('datadir/assets/plane.urdf')
         if floorcolor==None:
-            planeShapeId = pb.createVisualShape(shapeType=pb.GEOM_MESH, fileName='assets/plane.obj')
+            planeShapeId = pb.createVisualShape(shapeType=pb.GEOM_MESH, fileName='datadir/assets/plane.obj')
         else:
-            planeShapeId = pb.createVisualShape(shapeType=pb.GEOM_MESH, fileName='assets/plane.obj', rgbaColor=floorcolor)
+            planeShapeId = pb.createVisualShape(shapeType=pb.GEOM_MESH, fileName='datadir/assets/plane.obj', rgbaColor=floorcolor)
         pb.createMultiBody(baseVisualShapeIndex=planeShapeId, basePosition=[0, 0, 1])
 
         #if self.visualShapeId>=0:
@@ -65,14 +65,14 @@ class BulletWrapper():
             else:
                 meshScale=[np.random.uniform(0.06,0.08) * shapescale, np.random.uniform(0.06,0.08) * shapescale, np.random.uniform(0.06,0.08) * shapescale]
             #self.visualShapeId = pb.createVisualShape(shapeType=pb.GEOM_CAPSULE, rgbaColor=rgba, radius=0.05, length=0.1)
-            visualShapeId = pb.createVisualShape(shapeType=pb.GEOM_MESH, fileName='assets/capsule-obj/capsule.obj', rgbaColor=rgba, visualFramePosition=pos, visualFrameOrientation=ori, meshScale = meshScale)
+            visualShapeId = pb.createVisualShape(shapeType=pb.GEOM_MESH, fileName='datadir/assets/capsule-obj/capsule.obj', rgbaColor=rgba, visualFramePosition=pos, visualFrameOrientation=ori, meshScale = meshScale)
         
         elif shape == 'ellipsoid':
             if fixed_size:
                 meshScale = [0.1/0.6 * shapescale, 0.05/0.6 * shapescale, 0.05/0.6 * shapescale]
             else:
                 meshScale = [np.random.uniform(0.08,0.12)/0.4 * shapescale, np.random.uniform(0.04,0.06)/0.4 * shapescale, np.random.uniform(0.04,0.06)/0.4 * shapescale]
-            visualShapeId = pb.createVisualShape(shapeType=pb.GEOM_MESH, fileName='assets/spheres-obj/spheres.obj', rgbaColor=rgba, visualFramePosition=pos, visualFrameOrientation=ori, meshScale=meshScale)
+            visualShapeId = pb.createVisualShape(shapeType=pb.GEOM_MESH, fileName='datadir/assets/spheres-obj/spheres.obj', rgbaColor=rgba, visualFramePosition=pos, visualFrameOrientation=ori, meshScale=meshScale)
         
         else:
             assert False
@@ -83,7 +83,7 @@ class BulletWrapper():
                 meshScale = [0.1/4000.0 * shapescale, 0.05/4000.0 * shapescale, 0.05/4000.0 * shapescale]
             else:
                 meshScale = [np.random.uniform(0.08,0.12)/3000.0 * shapescale, np.random.uniform(0.04,0.06)/3000.0 * shapescale, np.random.uniform(0.04,0.06)/3000.0 * shapescale]
-            visualShapeId = pb.createVisualShape(shapeType=pb.GEOM_MESH, fileName='assets/sphere-obj/sphere.obj', rgbaColor=rgba, visualFramePosition=pos, visualFrameOrientation=ori, meshScale=meshScale)
+            visualShapeId = pb.createVisualShape(shapeType=pb.GEOM_MESH, fileName='datadir/assets/sphere-obj/sphere.obj', rgbaColor=rgba, visualFramePosition=pos, visualFrameOrientation=ori, meshScale=meshScale)
         '''
         
         pb.createMultiBody(baseVisualShapeIndex=visualShapeId, basePosition=[0, 0, 1])

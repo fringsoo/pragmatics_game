@@ -32,50 +32,51 @@ echo 'export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:/usr/include/python3.5' >> ~
 source ~/.bashrc
 ######################################################################################
 
-sudo echo 'blacklist nouveau'  | sudo tee -a /etc/modprobe.d/blacklist.conf
-sudo echo 'options nouveau modeset=0'  | sudo tee -a /etc/modprobe.d/blacklist.conf
-sudo echo options nouveau modeset=0 | sudo tee -a /etc/modprobe.d/nouveau-kms.conf
-sudo update-initramfs -u
-cd ~
+# sudo echo 'blacklist nouveau'  | sudo tee -a /etc/modprobe.d/blacklist.conf
+# sudo echo 'options nouveau modeset=0'  | sudo tee -a /etc/modprobe.d/blacklist.conf
+# sudo echo options nouveau modeset=0 | sudo tee -a /etc/modprobe.d/nouveau-kms.conf
+# sudo update-initramfs -u
+# cd ~
 ######################################################################################
 
 #nvidia driver(for m60 and k80)
 #wget http://us.download.nvidia.com/XFree86/Linux-x86_64/384.66/NVIDIA-Linux-x86_64-384.66.run
-wget http://us.download.nvidia.com/tesla/384.183/NVIDIA-Linux-x86_64-384.183.run
-sudo /bin/bash  ./NVIDIA-Linux-x86_64-384.183.run --accept-license --no-questions --ui=none
 
-#cuda
-#wget https://developer.nvidia.com/compute/cuda/8.0/Prod2/local_installers/cuda_8.0.61_375.26_linux-run
-wget https://developer.nvidia.com/compute/cuda/9.0/Prod/local_installers/cuda_9.0.176_384.81_linux-run
-chmod +X cuda_9.0.176_384.81_linux-run
-sudo sh cuda_9.0.176_384.81_linux-run --override --no-opengl-libs
-#the no-opengl-libs is very important! otherwise it is same as the preinstalled deep learning instance!
-#(Type n to NOT Install NVIDIA Accelerated Graphics Driver for Linux-x86_64)
-echo 'export PATH=/usr/local/cuda-9.0/bin:$PATH' >> ~/.bashrc
-echo 'export LD_LIBRARY_PATH=/usr/local/cuda-9.0/lib64:$LD_LIBRARY_PATH' >> ~/.bashrc
-echo 'export CUDA_HOME=/usr/local/cuda' >> ~/.bashrc
-source ~/.bashrc
-cd ~/NVIDIA_CUDA-9.0_Samples/
-make
-cd ~/NVIDIA_CUDA-9.0_Samples/bin/x86_64/linux/release/
-./deviceQuery  # see your graphics card specs
-./bandwidthTest # check if its operating correctly
-#(Both should state they PASS)
-cd ~
+# wget http://us.download.nvidia.com/tesla/384.183/NVIDIA-Linux-x86_64-384.183.run
+# sudo /bin/bash  ./NVIDIA-Linux-x86_64-384.183.run --accept-license --no-questions --ui=none
 
-#cudnn
-#wget http://developer.download.nvidia.com/compute/redist/cudnn/v7.0.5/cudnn-8.0-linux-x64-v7.tgz
-wget http://developer.download.nvidia.com/compute/redist/cudnn/v7.3.0/cudnn-9.0-linux-x64-v7.3.0.29.tgz
-tar -zxf cudnn-9.0-linux-x64-v7.3.0.29.tgz
-sudo cp cuda/lib64/* /usr/local/cuda/lib64/
-sudo cp cuda/include/cudnn.h /usr/local/cuda/include/
+# #cuda
+# #wget https://developer.nvidia.com/compute/cuda/8.0/Prod2/local_installers/cuda_8.0.61_375.26_linux-run
+# wget https://developer.nvidia.com/compute/cuda/9.0/Prod/local_installers/cuda_9.0.176_384.81_linux-run
+# chmod +X cuda_9.0.176_384.81_linux-run
+# sudo sh cuda_9.0.176_384.81_linux-run --override --no-opengl-libs
+# #the no-opengl-libs is very important! otherwise it is same as the preinstalled deep learning instance!
+# #(Type n to NOT Install NVIDIA Accelerated Graphics Driver for Linux-x86_64)
+# echo 'export PATH=/usr/local/cuda-9.0/bin:$PATH' >> ~/.bashrc
+# echo 'export LD_LIBRARY_PATH=/usr/local/cuda-9.0/lib64:$LD_LIBRARY_PATH' >> ~/.bashrc
+# echo 'export CUDA_HOME=/usr/local/cuda' >> ~/.bashrc
+# source ~/.bashrc
+# cd ~/NVIDIA_CUDA-9.0_Samples/
+# make
+# cd ~/NVIDIA_CUDA-9.0_Samples/bin/x86_64/linux/release/
+# ./deviceQuery  # see your graphics card specs
+# ./bandwidthTest # check if its operating correctly
+# #(Both should state they PASS)
+# cd ~
+
+# #cudnn
+# #wget http://developer.download.nvidia.com/compute/redist/cudnn/v7.0.5/cudnn-8.0-linux-x64-v7.tgz
+# wget http://developer.download.nvidia.com/compute/redist/cudnn/v7.3.0/cudnn-9.0-linux-x64-v7.3.0.29.tgz
+# tar -zxf cudnn-9.0-linux-x64-v7.3.0.29.tgz
+# sudo cp cuda/lib64/* /usr/local/cuda/lib64/
+# sudo cp cuda/include/cudnn.h /usr/local/cuda/include/
 ######################################################################################
 
 #rdp or ssh x11 connect
 sudo apt install -y ubuntu-desktop xrdp
 #after install these, you can have xterm, xinit..
 #In the AWS Dashboard edit the Security Group for the EC2 instance and allow inbound TCP connections on port 3389. (port for rdp)
-sudo passwd ubuntu
+#sudo passwd ubuntu
 #rdp require passwd login, however the original aws ubuntu only has key pair login
 sudo service xrdp restart
 ps aux | grep x  #check the xrdp service process
@@ -91,7 +92,7 @@ netstat -lnp
 #cat /proc/driver/nvidia/version
 #nvcc -V
 
-sudo nvidia-xconfig -a --allow-empty-initial-configuration --virtual=1920x1200 --busid=PCI:0:30:0 #--use-display-device=None 
+#sudo nvidia-xconfig -a --allow-empty-initial-configuration --virtual=1920x1200 --busid=PCI:0:30:0 #--use-display-device=None 
 #if p2 instance
 #cd /etc/X11
 #sudo cp XF86Config xorg.conf

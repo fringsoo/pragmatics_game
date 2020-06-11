@@ -121,7 +121,7 @@ def splittensor(axis=1, ratio_split=1, id_split=0,**kwargs):
 	#return Lambda(lambda x:f(x), **kwargs)
 	return Lambda(f, **kwargs)
 
-def convnet_com(w, h, c, preloadfile, name=None):
+def convnet_com(w, h, c, preloadfile, name):
 	'''
 	if not os.path.exists('bvlc_alexnet.npy'):
 		wget.download("http://www.cs.toronto.edu/~guerzhoy/tf_alexnet/bvlc_alexnet.npy", out="bvlc_alexnet.npy")
@@ -159,23 +159,18 @@ def convnet_com(w, h, c, preloadfile, name=None):
 	#dense_3 = Dense(1000,name='dense_3')(dense_3)
 	#prediction = Activation("softmax",name="softmax")(dense_3)
 
-	if name:
-		model = Model(input=inputs, output=dense_1, name=name)
-	else:
-		model = Model(input=inputs, output=dense_1)
+	model = Model(input=inputs, output=dense_1, name=name)
 
-	preload_complete = False
-	if os.path.exists(os.path.join('model_pretrain', preloadfile)):
-		model.load_weights(os.path.join('model_pretrain', preloadfile), True)
-		preload_complete = True
-		print('preload', preloadfile)
-	
-	if not preload_complete and preloadfile!=None:
-		if not os.path.exists(os.path.join('model_pretrain', 'alexnet_weights.h5')):
-			wget.download("http://files.heuritech.com/weights/alexnet_weights.h5", out=os.path.join('model_pretrain', 'alexnet_weights.h5'))
-		model.load_weights('model_pretrain/alexnet_weights.h5', True)
-
+	if preloadfile!=None:
+		if os.path.exists(os.path.join('models', 'conv_pretrain', preloadfile)):
+			model.load_weights(os.path.join('models', 'conv_pretrain', preloadfile), True)
+			print('preload', preloadfile)
+		else:
+			if not os.path.exists(os.path.join('models', 'conv_pretrain', 'alexnet_weights.h5')):
+				wget.download("http://files.heuritech.com/weights/alexnet_weights.h5", out=os.path.join('models', 'conv_pretrain', 'alexnet_weights.h5'))
+			model.load_weights('models/conv_pretrain/alexnet_weights.h5', True)
 	return model
+	
 
 def pretrain_conv(model, data_generator, conv_pretrain_type, fix_convmodel, trainround, savefile):
 	if conv_pretrain_type=='shape':
@@ -222,4 +217,4 @@ def pretrain_conv(model, data_generator, conv_pretrain_type, fix_convmodel, trai
 	conv_branch_model.layers[0].trainable = True
 
 	if savefile:
-		model.save(os.path.join('model_pretrain', savefile))
+		model.save(os.path.join('models', 'conv_pretrain', savefile))

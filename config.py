@@ -1,6 +1,8 @@
+import os
+
 agent_config_dict_dense = {	
 	###################################fixed for a model###################################
-	"modelpath": "model_symbolic_dense_maxlength10",
+	"modelpath": os.path.join("models", "model_symbolic_dense_maxlength10"),
 
 	#"agent_amount": 10,
 	"context_type": 'random',
@@ -35,12 +37,14 @@ agent_config_dict_dense = {
 	"n_batches": 1000000,
 	
 	"short_game_round": 100,
-	'sample_round_explicit':10,
+	'sample_round_explicit': 10,
+	"predict_nepoch": 3,
 }
 
 agent_config_dict_rnnbasic = {	
 	###################################fixed for a model###################################
-	"modelpath": "model_symbolic_rnnbasic_alpha17_maxlength5",
+	"modelpath": os.path.join("models", "model_symbolic_rnnbasic_alpha17_maxlength5"),
+	
 	
 	#"agent_amount": 10,
 	"context_type": 'random',
@@ -78,13 +82,15 @@ agent_config_dict_rnnbasic = {
 	"n_batches": 1000000,
 	
 	"max_short_game_round": 1000,
-	'sample_round_explicit':1,
+	'sample_round_explicit': 1,
+	"predict_nepoch": 3,
 }
 
 agent_config_dict_rnnconv = {	
 	###################################fixed for a model###################################
-	#"modelpath": "model_pixel_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_t3a",
-	"modelpath": "model_symbolic_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin_highacc_wellsplit_feweffectivedigit",
+	"modelpath": os.path.join("models", "model_pixel_rnnconv_alpha17_maxlength5_notsameviewpoint_2candidates_pretrain_tryorigin_highacc_wellsplit_feweffectivedigit"),
+	#"modelpath": os.path.join("models", "new_model_pixel_rnnconv_alpha17_maxlength5"),
+
 	
 	#"agent_amount": 10,
 	
@@ -123,10 +129,17 @@ agent_config_dict_rnnconv = {
 	
 	#"training_epoch": 1000,
 	"batch_size": 1,
-	"n_batches": 2000000,
+	"n_batches": 1000000,
 	
 	"max_short_game_round": 1000,
-	'sample_round_explicit':1,
+	'sample_round_explicit': 1,
+	"predict_nepoch": 1,
+
+	"challenge": True,
+	"challenge_same_set": [[0],[1],[2],[3],[4,5],[6,7]],
+	'maskdigit': [3,4],
+	'mask': 2,
+	'threshold': 0.75,
 }
 
 
