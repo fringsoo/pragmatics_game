@@ -977,6 +977,10 @@ class BaseAgents(object):
 				self.speaker_model.save_opt()
 				self.listener_model.save()
 				self.listener_model.save_opt()
+			if _n > 500000: #???
+				self.speaker_model.rebuild_train_fn(entropy_coefficient=0)
+				self.listener_model.rebuild_train_fn(entropy_coefficient=0)
+
 
 	def evaluate_on_training_set(self):
 		"""

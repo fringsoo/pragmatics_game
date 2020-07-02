@@ -8,7 +8,7 @@
 
 
 ## Environment Configuration
-To config environments and install necessary dependencies, including compiling and rendering tools, run the following script. (You do not have to follow each specific command inside, just make sure you can successfully render pubullet images and store them as numpy arrays.)
+To config environments and install necessary dependencies, including compiling and rendering tools, run the following script. (You do not have to follow each specific command inside, just make sure you can successfully render PyBullet images and store them as numpy arrays.)
 ```shell
 bash env_config.sh
 ```
@@ -23,10 +23,10 @@ To run the experiment:
 ```shell
 DISPLAY=:0 python run_experiments.py
 ```
-In which you can choose to:
+You can directly execute this script to see the results for the challenge dataset using pretrained model. Or you can choose to config in run_experiments.py and config.py to do the followings:
 
 ### 1. Pretrain CNNs
-The pretrain CNN models are already in models/conv_pretrain, you can skip this part. Or to pretrain them by yourself by setting in run_experiments.py:
+The pretrain CNN models are already in models/conv_pretrain. Or to pretrain them by yourself, set in run_experiments.py:
 ```shell
 agent.pretrain_fit_conv()
 ```
@@ -42,15 +42,15 @@ agent.fit()
 ```
 
 ### 3. Virtual opponent training
-To use the origin models as virtual opponents, in run_experiments.py set:
+To use the original models as virtual opponents, set in run_experiments.py:
 ```shell
 agent.set_virtual_origin()
 ```
-or use pretrained virtual oppoents in pretrain language system, in run_experiments.py set:
+or use pretrained virtual opponents in pretrain language system, set in run_experiments.py:
 ```shell
 agent.set_virtual_real()
 ```
-or train them system by yourself by setting in run_experiments.py:
+or train them system by yourself:
 ```shell
 agent.set_virtual_real()
 agent.train_virtual_listener()
@@ -67,18 +67,40 @@ Define challenge set in config.py:
 ```shell
 "challenge": True, #or False for overall testset
 "challenge_same_set": [[0],[1],[2],[3],[4,5],[6,7]], 
-# This is an example for the pretrained system. Here the numbers means colors: [[black], [blue], [green], [cyan], [red, magenta], [yellow, white]]
+# This is specific for "model_pixel_rnnconv_alpha17_maxlength5". Here the numbers refer to same/similiar color candidates that can not be distuiguished by baseline methods: [[black], [blue], [green], [cyan], [red, magenta], [yellow, white]]
 ```
-Define proposal set:
+Define proposal set in config.py:
 ```shell
 'maskdigit': [3,4], 
 'mask': 2,
-# Masking the last two digit of the message, which are meaningless and always "2" in alphabet in the pretrained model.
+# Masking the last two digits of the message, which are meaningless in  "model_pixel_rnnconv_alpha17_maxlength5" language system.
 'threshold': 0.75, 
 # The threshold for proposing highest probability messages.
 ```
+Define number of epoches in config.py:
+```shell
+"predict_nepoch": 3,
+```
 
-Results in Table 2, 3 in the paper will be printed.
+Results in Table 2, 3 in the paper will be printed. For example, by setting challenge to True, we have:
+model | Acc | std
+---- | --- | ---
+baseline | 53.0 | 2.6
+sampleL0 | 54.8 | 2.9
+sampleL0.5| 49.9 | 4.5
+argmaxL| 55.6 | 2.5
+argmaxL virtual| 53.0 | 2.3
+RSA2rnd| 54.0 | 1.9
+IBR2rnd| 80.6 | 2.8
+RSAcnvg| 55.1 | 2.1
+RSAcnvg virtual| 54.3 | 1.4
+IBRcnvg| 80.6 | 2.8
+IBRcnvg virtual| 68.6 | 1.6
+GameTable| 74.6 | 2.0
+GameTable virtual| 58.1 | 2.2
+GameTable-s| 94.0 | 0.6
+GameTable-s virtual| 69.9 | 1.8
+
 
 Also in a folder named with test datetime in the modelpath:
 
