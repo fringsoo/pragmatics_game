@@ -1,7 +1,7 @@
 # Pragmatics for Referential Games
 
 ## Note
- This codebase accompanies Neurips2020 spotlight paper "Incorporating Pragmatic Reasoning Communication into Emergent Language". Some part of it is based on [Lazaridou et al, 2018](https://github.com/NickLeoMartin/emergent_comm_rl).
+ This codebase accompanies Neurips2020 spotlight paper "Incorporating Pragmatic Reasoning Communication into Emergent Language". Some part of it is based on [Lazaridou et al, 2018](https://github.com/NickLeoMartin/emergent_comm_rl). Codes of the SCII case study section is in another [independent repo](https://github.com/fringsoo/NDQ).
 
 ## Tested Environment
 Ubuntu 16.04. Python 3.5.
