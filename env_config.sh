@@ -1,4 +1,5 @@
 #ubuntu 16.04
+#AWS t3a.xlarge (4 CPU 16G memory) instance. 
 
 #p2.xlarge (K80) no
 #g3 (M60) yes

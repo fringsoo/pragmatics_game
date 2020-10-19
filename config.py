@@ -88,8 +88,8 @@ agent_config_dict_rnnbasic = {
 
 agent_config_dict_rnnconv = {	
 	###################################fixed for a model###################################
-	#"modelpath": os.path.join("models", "model_pixel_rnnconv_alpha17_maxlength5"),
-	"modelpath": os.path.join("models", "new_model_pixel_rnnconv_alpha17_maxlength5"),
+	"modelpath": os.path.join("models", "model_pixel_rnnconv_alpha17_maxlength5"),
+	#"modelpath": os.path.join("models", "new_model_pixel_rnnconv_alpha17_maxlength5"),
 
 	
 	#"agent_amount": 10,

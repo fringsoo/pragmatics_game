@@ -203,6 +203,7 @@ class BulletWrapper():
             #print(sampled_target_idx)
         else:
             assert False
+        sampled_target_idx = [paramset[t][1], int(4*paramset[t][0][0] + 2*paramset[t][0][1] + paramset[t][0][2]), paramset[t][3]]
         y = np.random.randint(self.config['n_classes'])
         y_label = np.eye(self.config['n_classes'])[y]
         candidate_set = [None for c in range(self.config['n_classes'])]
@@ -229,6 +230,7 @@ class BulletWrapper():
                     #print(candidate_idx_set[c])
                 else:
                     assert False
+                candidate_idx_set[c] = [paramset[cc][1], int(4*paramset[cc][0][0] + 2*paramset[cc][0][1] + paramset[cc][0][2]), paramset[cc][3]]
             else:
                 if sameviewpoint:
                     candidate_set[c] = target
@@ -269,15 +271,15 @@ class BulletWrapper_yieldcolor(BulletWrapper):
         return np.eye(8)[t4], np.eye(8)[t5], t3, t4, t5
 
 if __name__=='__main__':
-    from config import agent_rnnconv_config_dict as config_dict
-    env = BulletWrapper_new(124,124)
+    from config import agent_config_dict_rnnconv as config_dict
+    env = BulletWrapper()
     t0=time.time()
     env.create_train_test_datasets(config_dict)
     for _ in range(100000):
         if _%100==0:
             print(_)
         t = np.random.randint(3000)
-        env.get_one_instance('train', t, False)
+        env.get_one_instance_from_dataset('train', t, False, False, 'color')
     
     t1=time.time()
     print(t1-t0)

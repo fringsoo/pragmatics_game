@@ -1,27 +1,26 @@
 # Pragmatics for Referential Games
 
 ## Note
- This codebase accompanies paper "Incorporating Pragmatic Reasoning Communication into Emergent Language", and is based on [Lazaridou et al, 2018](https://github.com/NickLeoMartin/emergent_comm_rl).
+ This codebase accompanies Neurips2020 spotlight paper "Incorporating Pragmatic Reasoning Communication into Emergent Language". Some part of it is based on [Lazaridou et al, 2018](https://github.com/NickLeoMartin/emergent_comm_rl).
 
 ## Tested Environment
- AWS t3a.xlarge (4 CPU 16G memory) instance. Ubuntu 16.04.
-
+Ubuntu 16.04. Python 3.5.
 
 ## Environment Configuration
-To config environments and install necessary dependencies, including compiling and rendering tools, run the following script. (You do not have to follow each specific command inside, just make sure you can successfully render PyBullet images and store them as numpy arrays.)
+<!-- To config environments and install necessary dependencies, including compiling and rendering tools, run the following script. (You do not have to follow each specific command inside, just make sure you can successfully render PyBullet images and store them as numpy arrays.)
 ```shell
 bash env_config.sh
-```
+``` -->
 Config python venv enviroment:
 ```shell
-source ~/venv/bin/activate
 pip install -r ~/pragmatics_game/requirements.txt
 ```
+You can adjust cpu/gpu version of tensorflow inside.
 
 ## Run
 To run the experiment:
 ```shell
-DISPLAY=:0 python run_experiments.py
+python run_experiments.py
 ```
 You can directly execute this script to see the results for the challenge dataset using pretrained model. Or you can choose to config in run_experiments.py and config.py to do the followings:
 
@@ -87,12 +86,12 @@ model | Acc | std
 ---- | --- | ---
 baseline | 53.0 | 2.6
 sampleL0 | 54.8 | 2.9
-sampleL0.5| 49.9 | 4.5
-argmaxL| 55.6 | 2.5
+sampleL0.5| 53.9 | 4.5
+argmaxL| 56.6 | 2.5
 argmaxL virtual| 53.0 | 2.3
-RSA2rnd| 54.0 | 1.9
+RSA2rnd| 55.9 | 1.9
 IBR2rnd| 80.6 | 2.8
-RSAcnvg| 55.1 | 2.1
+RSAcnvg| 62.0 | 2.1
 RSAcnvg virtual| 54.3 | 1.4
 IBRcnvg| 80.6 | 2.8
 IBRcnvg virtual| 68.6 | 1.6

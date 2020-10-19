@@ -22,7 +22,7 @@ import datetime
 
 from wrapper_visa import VisaDatasetWrapper
 from wrapper_pybullet import BulletWrapper
-from evaluation import obtain_metrics
+from evaluation import obtain_metrics, message_sequence_to_alphabet, topographic_similarity
 from agent_speaker import PaperSpeakerNetwork, PaperSpeakerNetwork_rnn, PaperSpeakerNetwork_rnn_conv
 from agent_listener import PaperListenerNetwork, PaperListenerNetwork_rnn, PaperListenerNetwork_rnn_conv
 from utils import pretrain_conv
@@ -90,9 +90,9 @@ def utils_digit2alphabet(speaker_message):
 
 def utils_judge_sameset(test_example, same_set):
 	for s in range(6):
-		if test_example[4][0] in same_set[s]:
+		if test_example[4][0][1] in same_set[s]:
 			sn0 = s
-		if test_example[4][1] in same_set[s]:
+		if test_example[4][1][1] in same_set[s]:
 			sn1 = s
 	if sn0!=sn1:
 		return False
@@ -375,7 +375,7 @@ def utils_prag_argmax_virtual(speaker_model, listener_model, virtual_l4s, exampl
 	reward = utils_calculate_reward(chosen_target_idx, target_candidate_idx)
 	return reward, candidates[np.argmax(target_candidate_idx)], np.array(speaker_message), chosen_target_idx, message_prob, cp, None, None
 
-def utils_prag_iter(speaker_model, listener_model, example, stopcondition, onehotlistener_0, onehotspeaker, onehotlistener, lambda_setting=0.5):
+def utils_prag_iter(speaker_model, listener_model, example, stopcondition, onehotlistener_0, onehotspeaker, onehotlistener):
 	#import time; t0=time.time()
 	target_input, candidates, target_candidate_idx, sampled_target_idx, candidate_idx_set = example
 	n_classes = len(candidates)
@@ -431,10 +431,12 @@ def utils_prag_iter(speaker_model, listener_model, example, stopcondition, oneho
 		for t in range(n_classes):
 			tempsum = 0
 			for m in range(len(messages_all)):
-				tempsum += m4cs_withprob[t][messages_all[m]]**lambda_setting * pl_t_m[m][t]**(1-lambda_setting)
+				tempsum += m4cs_withprob[t][messages_all[m]] * pl_t_m[m][t]
+				#tempsum += int(bool(m4cs_withprob[t][messages_all[m]])) * pl_t_m[m][t]
 			if tempsum > 0:
 				for m in range(len(messages_all)):
-					ps_m_t[t][m] = m4cs_withprob[t][messages_all[m]]**lambda_setting * pl_t_m[m][t]**(1-lambda_setting)
+					ps_m_t[t][m] = m4cs_withprob[t][messages_all[m]] * pl_t_m[m][t]
+					#ps_m_t[t][m] = int(bool(m4cs_withprob[t][messages_all[m]])) * pl_t_m[m][t]
 				ps_m_t[t] = ps_m_t[t] / (sum(ps_m_t[t]) + 0.0)
 			if onehotspeaker:
 				ps_m_t[t] = np.eye(len(messages_all))[np.argmax(ps_m_t[t])]
@@ -493,12 +495,12 @@ def utils_prag_iter(speaker_model, listener_model, example, stopcondition, oneho
 		candidatenum2messageseq[t] = np.argmax(ps_m_t[t])
 	'''
 
-def utils_prag_iter_virtual(speaker_model, listener_model, virtual_s4l, virtual_l4s, example, stopcondition, onehotlistener_0, onehotspeaker, onehotlistener, lambda_setting=0.5):
-	result4s = utils_prag_iter(speaker_model, virtual_l4s, example, stopcondition, onehotlistener_0, onehotspeaker, onehotlistener, lambda_setting)
+def utils_prag_iter_virtual(speaker_model, listener_model, virtual_s4l, virtual_l4s, example, stopcondition, onehotlistener_0, onehotspeaker, onehotlistener):
+	result4s = utils_prag_iter(speaker_model, virtual_l4s, example, stopcondition, onehotlistener_0, onehotspeaker, onehotlistener)
 	s_m4t_info = result4s[-2]
 	
 	
-	result4l = utils_prag_iter(virtual_s4l, listener_model, example, stopcondition, onehotlistener_0, onehotspeaker, onehotlistener, lambda_setting)
+	result4l = utils_prag_iter(virtual_s4l, listener_model, example, stopcondition, onehotlistener_0, onehotspeaker, onehotlistener)
 	l_ms4t_info = result4l[-1]
 	
 
@@ -991,7 +993,7 @@ class BaseAgents(object):
 		for i, train_example in enumerate(self.data_generator.training_set_evaluation_generator()):
 			#pbar.update(i)
 			reward, target_input, speaker_message, chosen_target_idx, mp, cs, _, _ = utils_test(self.speaker_model, self.listener_model, train_example)
-			self.training_eval_stats.append({"reward": reward, "input": target_input, "message": arraytostring(speaker_message), "chosen_target_idx": [chosen_target_idx]})
+			self.training_eval_stats.append({"reward": reward, "input": target_input, "message": utils_digit2alphabet(speaker_message), "chosen_target_idx": [chosen_target_idx]})
 		#pbar.finish()
 		metrics = obtain_metrics(self.training_eval_stats, self.config)
 		return metrics
@@ -1018,8 +1020,8 @@ class BaseAgents(object):
 			if is_rnnconv:
 				os.mkdir(datas[key]['pathname'])
 			
-		def add_data(key, reward, target_input, speaker_message, chosen_target_idx, mp, cs, i):	
-			datas[key]['testing_stats'].append({"reward": reward, "input": target_input, "message": arraytostring(speaker_message), "chosen_target_idx": [chosen_target_idx]})
+		def add_data(key, reward, target_input, speaker_message, chosen_target_idx, mp, cs, i, color=None):	
+			datas[key]['testing_stats'].append({"reward": reward, "input": target_input, "message": utils_digit2alphabet(speaker_message), "chosen_target_idx": [chosen_target_idx]})
 			datas[key]['rd'] += reward
 			if reward>0:
 				datas[key]['mp'] += mp
@@ -1033,77 +1035,85 @@ class BaseAgents(object):
 					datas[key]['stat'][message_in_letters] = Counter()
 				#plt.imsave(os.path.join(message_str, str(i)+'.png'), target_input)
 				datas[key]['message_im'][message_in_letters].append(utils_imrmbg(target_input))
-				datas[key]['stat'][message_in_letters][test_example[3]] += 1
+				datas[key]['stat'][message_in_letters][color] += 1
 
+		locs = []
+		colors = []
 		for epoch in range(nepoch):
 			count_epoch = 0
 			for i, test_example in enumerate(self.data_generator.testing_set_generator()):
 				i_tot = epoch*self.data_generator.n_testing_instances+i
 				pbar.update(i_tot)
-				if 'challenge' in self.config.keys() and self.config['challenge']:
-					if not utils_judge_sameset(test_example, self.config['challenge_same_set']):
-						continue
+				if is_rnnconv:
+					color = test_example[3][1]
+					colors.append(color)
+					locs.append(test_example[3][2])
+					if 'challenge' in self.config.keys() and self.config['challenge']:
+						if not utils_judge_sameset(test_example, self.config['challenge_same_set']):
+							continue
+				else:
+					color = None
 				count_epoch += 1.0
 				
 				if 'baseline' in keys:					
 					reward, target_input, speaker_message, chosen_target_idx, mp, cs, _, _ = utils_test(self.speaker_model, self.listener_model, test_example)
-					add_data('baseline', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i_tot)
+					add_data('baseline', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i_tot, color)
 				
 				if 'prag_sample_0' in keys:
 					reward, target_input, speaker_message, chosen_target_idx, mp, cs, _, _ = utils_prag_sample(self.speaker_model, self.listener_model, test_example, 0)
-					add_data('prag_sample_0', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i_tot)
+					add_data('prag_sample_0', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i_tot, color)
 					
 				if 'prag_sample_0.5' in keys:
 					reward, target_input, speaker_message, chosen_target_idx, mp, cs, _, _ = utils_prag_sample(self.speaker_model, self.listener_model, test_example, 0.5)
-					add_data('prag_sample_0.5', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i_tot)
+					add_data('prag_sample_0.5', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i_tot, color)
 				
 				if 'prag_argmax' in keys:
 					reward, target_input, speaker_message, chosen_target_idx, mp, cs, _, _ = utils_prag_argmax(self.speaker_model, self.listener_model, test_example)
-					add_data('prag_argmax', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i_tot)
+					add_data('prag_argmax', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i_tot, color)
 
 				if 'rsa_2' in keys:
 					reward, target_input, speaker_message, chosen_target_idx, mp, cs, _, _ = utils_prag_iter(self.speaker_model, self.listener_model, test_example, 2, False, False, False)
-					add_data('rsa_2', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i_tot)
+					add_data('rsa_2', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i_tot, color)
 
 				if 'ibr_2' in keys:
 					reward, target_input, speaker_message, chosen_target_idx, mp, cs, _, _ = utils_prag_iter(self.speaker_model, self.listener_model, test_example, 2, False, True, True)
-					add_data('ibr_2', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i_tot)
+					add_data('ibr_2', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i_tot, color)
 
 				if 'rsa_equi' in keys:
 					reward, target_input, speaker_message, chosen_target_idx, mp, cs, _, _ = utils_prag_iter(self.speaker_model, self.listener_model, test_example, 'converge', False, False, False)
-					add_data('rsa_equi', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i_tot)
+					add_data('rsa_equi', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i_tot, color)
 
 				if 'ibr_equi' in keys:
 					reward, target_input, speaker_message, chosen_target_idx, mp, cs, _, _ = utils_prag_iter(self.speaker_model, self.listener_model, test_example, 'converge', False, True, True)
-					add_data('ibr_equi', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i_tot)
+					add_data('ibr_equi', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i_tot, color)
 				
 				if 'table' in keys:	
 					reward, target_input, speaker_message, chosen_target_idx, mp, cs, _, _ = utils_table(self.speaker_model, self.listener_model, test_example, False)
-					add_data('table', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i_tot)
+					add_data('table', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i_tot, color)
 					
 				if 'table_special' in keys:	
 					reward, target_input, speaker_message, chosen_target_idx, mp, cs, _, _ = utils_table(self.speaker_model, self.listener_model, test_example, True)
-					add_data('table_special', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i_tot)
+					add_data('table_special', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i_tot, color)
 					
 				if 'prag_argmax_virtual' in keys:
 					reward, target_input, speaker_message, chosen_target_idx, mp, cs, _, _ = utils_prag_argmax_virtual(self.speaker_model, self.listener_model, self.newlistener_a, test_example)
-					add_data('prag_argmax_virtual', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i_tot)
+					add_data('prag_argmax_virtual', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i_tot, color)
 				
 				if 'rsa_equi_virtual' in keys:	
 					reward, target_input, speaker_message, chosen_target_idx, mp, cs, _, _ = utils_prag_iter_virtual(self.speaker_model, self.listener_model, self.newspeaker_a, self.newlistener_a, test_example, 'converge', False, False, False)
-					add_data('rsa_equi_virtual', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i_tot)
+					add_data('rsa_equi_virtual', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i_tot, color)
 
 				if 'ibr_equi_virtual' in keys:	
 					reward, target_input, speaker_message, chosen_target_idx, mp, cs, _, _ = utils_prag_iter_virtual(self.speaker_model, self.listener_model, self.newspeaker_a, self.newlistener_a, test_example, 'converge', False, True, True)
-					add_data('ibr_equi_virtual', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i_tot)
+					add_data('ibr_equi_virtual', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i_tot, color)
 					
 				if 'table_virtual' in keys:	
 					reward, target_input, speaker_message, chosen_target_idx, mp, cs, _, _ = utils_table_virtual(self.speaker_model, self.listener_model, self.newspeaker_a, self.newlistener_a, test_example, False)
-					add_data('table_virtual', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i_tot)
+					add_data('table_virtual', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i_tot, color)
 
 				if 'table_special_virtual' in keys:	
 					reward, target_input, speaker_message, chosen_target_idx, mp, cs, _, _ = utils_table_virtual(self.speaker_model, self.listener_model, self.newspeaker_a, self.newlistener_a, test_example, True)
-					add_data('table_special_virtual', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i_tot)
+					add_data('table_special_virtual', reward, target_input, speaker_message, chosen_target_idx, mp, cs, i_tot, color)
 					
 
 			for key in keys:
@@ -1128,6 +1138,28 @@ class BaseAgents(object):
 			for mim in datas[key]['message_im'].keys():
 				message_str = os.path.join(datas[key]['pathname'], mim)
 				plt.imsave(message_str+'/'+key+'_'+mim+'_average.png', utils_immean(datas[key]['message_im'][mim]))
+
+			'''
+			colorsetdict = {}
+			for colorset in self.config['challenge_same_set']:
+			#for colorset in range(8):
+				messages = []
+				locs4color = []
+				for e in range(len(colors)):
+					if colors[e] in colorset:
+					#if colors[e] == colorset:
+					#if True:
+						#messages.append(message_sequence_to_alphabet(datas[key]['testing_stats'][e]['message'], self.config['alphabet']))
+						messages.append(datas[key]['testing_stats'][e]['message'])
+						#locs4color.append(locs[e])
+						locs4color.append(locs[e] + [colors[e]//4, colors[e]//2%2, colors[e]%2])
+				#import pdb; pdb.set_trace()
+				if len(set(colorset)) == 1: 
+					messages[-1] = 'ccccc'
+				topo_sim = topographic_similarity(locs4color, messages)
+				colorsetdict[str(colorset)] = topo_sim
+			print(colorsetdict)
+			'''
 		
 
 class Agents_dense(BaseAgents):
@@ -1175,6 +1207,11 @@ class Agents_rnnbasic(Agents_dense):
 class Agents_rnnconv(Agents_dense):
 	def __init__(self, config):
 		super(Agents_dense, self).__init__(config)
+
+		#lr & entropy for initial setting, rebuild, virtual
+		#first use entropy = 0.01 for speaker and 0.001 for listener to train to 90%, then set to 0
+		#lr=0.001 for euclidean newt and 0.0001 for dot newt
+
 		self.speaker_model = PaperSpeakerNetwork_rnn_conv(os.path.join(self.config['modelpath'], 'speaker_lstm.h5'),
 															os.path.join(self.config['modelpath'], 'speaker_opt.pkl'),
 															0.001,#0.0001,
