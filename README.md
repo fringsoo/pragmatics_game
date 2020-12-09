@@ -1,7 +1,7 @@
 # Incorporating Pragmatic Reasoning Communication into Emergent Language: Pragmatics for Referential Games
 
 ## Note
- This is the codebase for the referential game experiment of NeurIPS2020 spotlight paper [**Incorporating Pragmatic Reasoning Communication into Emergent Language**]((https://fringsoo.github.io/pragmatic_in2_emergent_papersite/)), authored by Yipeng Kang, [Tonghan Wang](https://tonghanwang.github.io/) and [Gerard de Melo](http://gerard.demelo.org/). It is partially based on [Lazaridou et al, 2018](https://github.com/NickLeoMartin/emergent_comm_rl). Codes of the SCII case study section is in another [independent repo](https://github.com/fringsoo/NDQ).
+ This is the codebase for the referential game experiment of NeurIPS2020 spotlight paper [**Incorporating Pragmatic Reasoning Communication into Emergent Language**](https://fringsoo.github.io/pragmatic_in2_emergent_papersite/), authored by Yipeng Kang, [Tonghan Wang](https://tonghanwang.github.io/) and [Gerard de Melo](http://gerard.demelo.org/). It is partially based on [Lazaridou et al, 2018](https://github.com/NickLeoMartin/emergent_comm_rl). Codes of the SCII case study section is in another [independent repo](https://github.com/fringsoo/NDQ).
 
 ## Tested Environment
 Ubuntu 16.04. Python 3.5.
